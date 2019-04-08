@@ -1,5 +1,5 @@
 # FIFA project (PHP)
 
-![fifa](https://user-images.githubusercontent.com/45621155/55712927-eecd5280-59ef-11e9-8f72-b851b33bf3c6.png)
+![FIFA-logo](https://user-images.githubusercontent.com/45621155/55713034-276d2c00-59f0-11e9-9fc6-c911a485f03a.png)
 
 Dit is de web applicatie van het FIFA project.
