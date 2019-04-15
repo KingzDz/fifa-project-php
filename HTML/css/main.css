@@ -101,7 +101,7 @@ textarea {
  /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-  body, main{
+  body, main, header{
     display: grid;
     grid-column: 1 / 4;
     grid-template-columns: 20% 60% 20%;
@@ -113,6 +113,13 @@ textarea {
 
   /*header*/
   .nav{
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    background-color: #144280;
+
+  }
+  .nav-index{
     grid-column: 1 / 4;
     display: grid;
     grid-template-columns: 20% 60% 20%;
@@ -166,7 +173,7 @@ textarea {
     height: 2px;
     background-color: grey;
   }
-  button{
+  button, #submit-team{
   width: 130px;
   height: 45px;
   background-color: #E15A3A;
@@ -176,7 +183,52 @@ textarea {
   font-family: arial;
   font-size: 20px;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto 0px auto;
+}
+
+/*create-teams*/
+
+.main-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  grid-column: 1 / 4;
+  padding: 40px 0px;
+  background-color: #F9F9F9;
+}
+
+#create-team-form, #create-account-form, #login-account-form{
+  display: flex;
+  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  padding: 40px 10px;
+  width: auto;
+  text-align: center;
+}
+
+.main-form img{
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  max-height: 420px;
+}
+
+.create-form-background{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-form{
+  background-color: #144280;
+  padding: 30px 80px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+
 }
 
 
