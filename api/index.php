@@ -23,10 +23,6 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-
-<header>
-
-</header>
 <main>
     <div class="main-content">
         <div class="nav-index">
@@ -47,9 +43,7 @@
     </div>
     <div class="bar"></div>
 </main>
-<footer>
-
-</footer>
+<?php require 'footer.php'?>
 
 <script src="js/vendor/modernizr-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

@@ -31,7 +31,7 @@ else {
     if (password_verify($password, $hashedPassword)) {
 
         $_SESSION['username'] = $username;
-        header("Location: create-team.php");
+        header("Location: create-team.php?id=".$user['id']."");
     }
 
     else {

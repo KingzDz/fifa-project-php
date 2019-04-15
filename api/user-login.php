@@ -24,15 +24,7 @@
 
 <!-- Add your site or application content here -->
 
-<header>
-    <div class="nav">
-        <div class="navigation">
-            <a href="index.html">Home</a>
-            <img src="img/FIFA-logo.png" alt="FIFA-logo">
-            <a href="login.html">Login</a>
-        </div>
-    </div>
-</header>
+<?php require 'header.php'?>
 <main>
     <div class="main-form">
         <div class="create-form-background">
@@ -63,8 +55,8 @@
         </div>
     </div>
 </main>
-<footer>
-</footer>
+
+<?php require 'footer.php' ?>
 
 <script src="js/vendor/modernizr-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
