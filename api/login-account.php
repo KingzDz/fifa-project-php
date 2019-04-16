@@ -7,6 +7,7 @@
  */
 
 require 'config.php';
+session_start();
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -30,8 +31,10 @@ else {
 
     if (password_verify($password, $hashedPassword)) {
 
+        $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        header("Location: create-team.php?id=".$user['id']."");
+
+        header("Location: user-home.php");
     }
 
     else {
