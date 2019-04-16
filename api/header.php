@@ -11,7 +11,7 @@
         <div class="navigation">
             <a href="index.php">Home</a>
             <img src="img/FIFA-logo.png" alt="FIFA-logo">
-            <a href="login">user-login.php</a>
+            <a href="user-login.php">Login</a>
         </div>
     </div>
 </header>

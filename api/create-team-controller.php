@@ -7,14 +7,11 @@
  */
 
 require 'config.php';
-
 session_start();
-if(!isset($_SESSION['username'])){
-    header("Location:user-login.php");
-}
 
-$teamname = $_GET['teamname'];
-$players = $_GET['players'];
+$teamname = $_POST['teamname'];
+$players = $_POST['players'];
+$username = $_SESSION['username'];
 
 if(empty($teamname) || empty($players))
 {
@@ -26,22 +23,22 @@ else if(strlen($teamname) < 3){
 }
 
 $sqlteam = "SELECT * FROM team WHERE teamname = '$teamname'";
-$query =$db->query($sqlemail);
+$query =$db->query($sqlteam);
 $result = $query->fetch();
 
 if ($teamname == $result['teamname']){
     echo "Er bestaat al een team met deze naam";
 }
 else {
-    $sql = "INSERT  INTO team (email, password, username) VALUES (:email, :password, :username)";
+    $sql = "INSERT  INTO team (teamname, players, leader) VALUES (:teamname, :players, :leader)";
     $prepare = $db->prepare($sql);
     $prepare->execute([
-        ':email' => $email,
-        ':password' => $hashedpassword,
-        ':username' => $username,
+        ':teamname' => $teamname,
+        ':players' => $players,
+        ':leader' => $username,
     ]);
 
     echo "Team succesvol aangemaakt";
-    header("Location: user.php");
+    header("Location: user-home.php");
 
 }
