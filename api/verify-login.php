@@ -1,6 +1,6 @@
 <?php 
 
-require 'config.php';
+require 'database.php';
 
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -16,7 +16,14 @@ if (!isset($_GET["username"]) || !isset($_GET["password"])) {
 $username = htmlspecialchars($_GET["username"]);
 $password = htmlspecialchars($_GET["password"]);
 
-$pass = password_hash($password, PASSWORD_DEFAULT); 
+$db = new Database("localhost", "jai", "", "users");
+$db = $db->getConnection();
+
+/*$hash = password_hash($password, PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO `user` (`username`, `password`) VALUES ('$username', '$hash');";
+$prepare = $db->prepare($sql);
+$prepare->execute(); exit;*/
 
 $sql = "SELECT `password`, `username` FROM `user`;";
 $prepare = $db->prepare($sql);

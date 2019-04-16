@@ -1,12 +1,19 @@
-<?php 
+<?php
+/**
+ * Created by PhpStorm.
+ * User: sybra
+ * Date: 1-4-2019
+ * Time: 15:37
+ */
 
 $dbHost = 'localhost';
-$dbUser = 'jai';
+$dbUser = 'root';
 $dbPass = '';
-$dbName = 'users';
+$dbName = 'fifa';
 
 $db = new PDO(
     "mysql:host=$dbHost;dbname=$dbName",
+
     $dbUser,
     $dbPass
 );
