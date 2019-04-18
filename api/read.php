@@ -22,7 +22,7 @@ if($num > 0) {
 			"id" => $id,
 			"teamname" => $teamname,
 			"players" => $players,
-			"leader" => $sybrand
+			"leader" => $leader
 		);
 
 		array_push($teamsArray["records"], $team_item);
