@@ -8,7 +8,7 @@ include_once 'team.php';
 
 $team = new Team($db);
 
-$stmt = $recipe->Read();
+$stmt = $team->Read();
 $num = $stmt->rowCount();
 
 if($num > 0) {
