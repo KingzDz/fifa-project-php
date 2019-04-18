@@ -25,6 +25,7 @@ $prepare->execute([
     ':id' => $username
 ]);
 $user = $prepare->fetch(PDO::FETCH_ASSOC);
+$_SESSION['admin'] = $user['admin'];
 ?>
     <!doctype html>
     <html class="no-js" lang="">
