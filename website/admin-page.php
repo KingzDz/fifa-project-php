@@ -8,12 +8,12 @@
 
 session_start();
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
     $username = $_SESSION['id'];
     require 'config.php';
 
-    $sql = "SELECT * FROM team WHERE leader = '$username'";
+    $sql = "SELECT * FROM team";
 
     $query =$db->query($sql);
     $teams = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -49,10 +49,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     <main>
         <div class="main-user">
             <div class="teams">
-                <h2>Jouw aangemaakte teams</h2>
+                <h2>Teams</h2>
                 <?php
                 if(empty($teams)){
-                    ?><h2>Je hebt nog geen teams aangemaakt</h2> <?php
+                    ?><h2>Er zijn nog geen teams aangemaakt</h2> <?php
                 }
                 else{
                     $count = count($teams);
@@ -66,12 +66,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 
 
-                    echo  "<h2>Je bent leider van $count team(s)</h2>";
+                    echo  "<h2>Er zijn $count team(s)</h2>";
                 }
                 ?>
             </div>
             <div class="create-team-button">
-                <button onclick="window.location.href = 'create-team.php';">Team maken</button>
+                <button onclick="window.location.href = '#';">Poel maken</button>
             </div>
         </div>
     </main>
