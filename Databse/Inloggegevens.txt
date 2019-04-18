@@ -1,0 +1,5 @@
+https://sybrandbos.nl/website/API/verify-login.php  || API 
+http://sybrandbos.nl/phpmyadmin/                    || Database 
+u39777p35334_Sybrand                                || Database username
+Sybrand123                                          || Database wachtwoord
+u39777p35334_fifa                                   || Database naam

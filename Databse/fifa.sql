@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 apr 2019 om 09:09
+-- Gegenereerd op: 18 apr 2019 om 10:55
 -- Serverversie: 10.1.37-MariaDB
 -- PHP-versie: 7.3.1
 
@@ -25,6 +25,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `team`
+--
+
+CREATE TABLE `team` (
+  `id` int(10) NOT NULL,
+  `teamname` varchar(535) CHARACTER SET utf8 NOT NULL,
+  `players` varchar(535) CHARACTER SET utf8 NOT NULL,
+  `leader` varchar(535) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `team`
+--
+
+INSERT INTO `team` (`id`, `teamname`, `players`, `leader`) VALUES
+(1, 'Real', '8', '3'),
+(4, 'Liverpool', '8', '3'),
+(5, 'Nederland', '8', '3');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `user`
 --
 
@@ -37,8 +59,21 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Gegevens worden geëxporteerd voor tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `admin`) VALUES
+(3, 'Sybrandbos', 'sybrandbos@gmail.com', '$2y$10$6gDhJGqqAmKe4W2gEcIdlOnzW505jecozPrPyhdwglmwFXB3mkjMC', 1);
+
+--
 -- Indexen voor geëxporteerde tabellen
 --
+
+--
+-- Indexen voor tabel `team`
+--
+ALTER TABLE `team`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `user`
@@ -51,10 +86,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT voor een tabel `team`
+--
+ALTER TABLE `team`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
