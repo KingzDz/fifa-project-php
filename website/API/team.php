@@ -20,7 +20,7 @@ class Team {
 		$stmt = $this->conn->prepare($sql);
 		$stmt->execute();
 
-		return $stmt
+		return $stmt;
 	}
 
 }
