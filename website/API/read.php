@@ -20,9 +20,14 @@ if($num > 0) {
 		extract($row);
 		$recipe_item=array(
 			"id" => $id,
-			"teamname" => $teamname,
-			"players" => $players,
-			"leader" => $leader
+			"category_id" => $category_id,
+			"updated_at" => $updated_at,
+			"created_at" => $created_at,
+			"user_id" => $user_id,
+			"title" => $title,
+			"description" => $description,
+			"ingredients" => $ingredients,
+			"picture_url" => $picture_url
 		);
 
 		array_push($recipes_arr["records"], $recipe_item);
