@@ -7,9 +7,9 @@
  */
 
 $dbHost = 'localhost';
-$dbUser = 'u39777p35334_Sybrand';
-$dbPass = 'Sybrand123';
-$dbName = 'u39777p35334_fifa';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = 'fifa';
 
 $db = new PDO(
     "mysql:host=$dbHost;dbname=$dbName",

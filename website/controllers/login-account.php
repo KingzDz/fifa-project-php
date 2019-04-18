@@ -34,7 +34,19 @@ else {
         $_SESSION['loggedin'] = true;
         $_SESSION['id'] = $user['id'];
 
-        header("Location: ../user-home.php");
+        if($user['admin'] == 1){
+
+            $_SESSION['loggedin'] = true;
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['admin'] = true;
+
+            header("Location: ../admin-page.php");
+        }
+        else{
+            header("Location: ../user-home.php");
+        }
+
+
     }
 
     else {
