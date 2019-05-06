@@ -10,6 +10,7 @@ require 'config.php';
 session_start();
 
 $_SESSION['forgot-pass-email'] = $_GET['email'];
+$_SESSION['forgot-pass-hashed-email'] = $_GET['hashedemail'];
 
 ?>
 

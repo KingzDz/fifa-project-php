@@ -13,8 +13,9 @@ session_start();
 $mainpassword = $_POST['password-main'];
 $secupassword = $_POST['password-secu'];
 $email = $_SESSION['forgot-pass-email'];
+$hashedemail = $_SESSION['forgot-pass-hashed-email'];
 
-if($mainpassword == $secupassword && $mainpassword != ""){
+if($mainpassword == $secupassword && $mainpassword != "" && password_verify($email, $hashedemail) == true){
 
     $hashedpassword = password_hash ( $mainpassword , PASSWORD_DEFAULT);
 
@@ -31,6 +32,6 @@ if($mainpassword == $secupassword && $mainpassword != ""){
 }
 
 else{
-    echo"Je wachtwoorden komen niet overeen, je word teruggestuurd";
+    echo"Je wachtwoorden/emails komen niet overeen, je word teruggestuurd";
     header("refresh:6;url=../newpassword.php?email=$email");
 }

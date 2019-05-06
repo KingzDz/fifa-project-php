@@ -13,6 +13,7 @@ $email = $_POST['email'];
 $sqlemail = "SELECT * FROM user WHERE email = '$email'";
 $query =$db->query($sqlemail);
 $result = $query->fetch();
+$hashedemail = password_hash($result['email'], PASSWORD_DEFAULT);
 
 if ($email == $result['email']){
     header("refresh:8;url=../index.php");
@@ -26,11 +27,11 @@ if ($email == $result['email']){
 Oh nee... je bent je wachtwoord vergeten!
 Druk hieronder op de link om je wachtwoord aan te passen
  
-sybrandbos.nl/website/newpassword.php?email='.$result['email'].'
+sybrandbos.nl/website/newpassword.php?email='.$email.$hashedemail.'
 ------------------------
 
 Ken jij deze activiteit niet? dan kan je deze mail negeren
- 
+ t
 ';
 
     $headers = 'From:noreply@fifa-project.nl';
