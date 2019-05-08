@@ -72,6 +72,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             </div>
             <div class="create-team-button">
                 <button onclick="window.location.href = 'create-team.php';">Team maken</button>
+                <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
             </div>
         </div>
     </main>
@@ -102,7 +103,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     <?php
 }
 else{
-    header("Locaion: user-login.php");
+    header("Location: user-login.php");
     exit();
 }
 ?>

@@ -50,9 +50,9 @@
                 <input type="text" name="username" required="">
                 <label for="players">Wachtwoord</label>
                 <input type="password" name="password" required="">
-                <button id="forgot" onclick="window.location.href = 'forgot-pass.php';">Vergeten</button>
                 <input id="submit-team" type="submit" value="Inloggen">
             </form>
+            <button id="forgot" onclick="window.location.href = 'forgot-pass.php';">Vergeten</button>
         </div>
     </div>
 </main>

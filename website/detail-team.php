@@ -19,13 +19,14 @@ $prepare->execute([
 ]);
 $team = $prepare->fetch(PDO::FETCH_ASSOC);
 
+$teamleader = $team['leader'];
+
 $sql2 = "SELECT * FROM user WHERE id = :id";
 $prepare = $db->prepare($sql2);
 $prepare->execute([
-    ':id' => $username
+    ':id' => $teamleader
 ]);
 $user = $prepare->fetch(PDO::FETCH_ASSOC);
-$_SESSION['admin'] = $user['admin'];
 ?>
     <!doctype html>
     <html class="no-js" lang="">
@@ -63,8 +64,6 @@ $_SESSION['admin'] = $user['admin'];
         </div>
         <div class="edit-del">
             <a href="user-home.php">Ga terug</a>
-            <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
-            <a href="controllers/delete-team.php?id=<?php echo $team['id'] ?>">Verwijderen</a>
         </div>
     </main>
     <?php require 'footer.php' ?>

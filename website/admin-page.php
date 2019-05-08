@@ -59,7 +59,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                     echo '<ul>';
                     for ($i = 0; $i < $count; $i++) {
                         $title = htmlentities($teams[$i]['teamname']);
-                        echo "<li><a href='detail-team.php?id={$teams[$i]['id']}'> $title</a></li>";
+                        echo "<li><a href='admindetail.php?id={$teams[$i]['id']}'> $title</a></li>";
 
                     }
                     echo '</ul>';
@@ -72,6 +72,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
             </div>
             <div class="create-team-button">
                 <button onclick="window.location.href = '#';">Poel maken</button>
+                <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
             </div>
         </div>
     </main>
@@ -102,7 +103,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
     <?php
 }
 else{
-    header("Locaion: user-login.php");
+    header("Location: user-login.php");
     exit();
 }
 ?>
