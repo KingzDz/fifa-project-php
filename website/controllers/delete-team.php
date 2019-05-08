@@ -13,6 +13,6 @@ $prepare->execute([
     ':id' => $id
 ]);
 echo "Team is succesvol verwijderd, je word nu teruggestuurd";
-header( "refresh:6;url=../user-home.php" );
+header( "refresh:6;url=../admin-page.php" );
 
 ?>
