@@ -9,14 +9,14 @@
 require 'config.php';
 
 $email = $_POST['email'];
-$hashedemail = password_hash($email, PASSWORD_DEFAULT);
 
 $sqlemail = "SELECT * FROM user WHERE email = :email";
 $prepare = $db->prepare($sqlemail);
 $prepare->execute([
     ':email' => $email
 ]);
-$result = $query->fetch();
+$result = $prepare->fetch(PDO::FETCH_ASSOC);
+$hashedpassword = $result['password'];
 
 if ($email == $result['email']){
     header("refresh:8;url=../index.php");
@@ -30,7 +30,7 @@ if ($email == $result['email']){
 Oh nee... je bent je wachtwoord vergeten!
 Druk hieronder op de link om je wachtwoord aan te passen
  
-sybrandbos.nl/website/newpassword.php?email='.$email.$hashedemail.'
+sybrandbos.nl/website/newpassword.php?hashedpassword='.$hashedpassword.'
 ------------------------
 
 Ken jij deze activiteit niet? dan kan je deze mail negeren

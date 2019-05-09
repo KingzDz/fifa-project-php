@@ -12,15 +12,22 @@ session_start();
 
 $mainpassword = $_POST['password-main'];
 $secupassword = $_POST['password-secu'];
-$email = $_SESSION['forgot-pass-email'];
-$hashedemail = $_SESSION['forgot-pass-hashed-email'];
+$hash = $_SESSION['hashedpassword'];
 
-if($mainpassword == $secupassword && $mainpassword != "" && password_verify($email, $hashedemail) == true){
+$sql = "SELECT * FROM user WHERE password = :password";
+$prepare = $db->prepare($sql);
+$prepare->execute([
+    ':password' => $hash
+]);
+$result = $prepare->fetch(PDO::FETCH_ASSOC);
+
+$email = $result['email'];
+
+if($mainpassword == $secupassword && $mainpassword != "" && $hash == $result['password']){
 
     $hashedpassword = password_hash ( $mainpassword , PASSWORD_DEFAULT);
 
     $sql = "UPDATE user SET password = :password WHERE email = :email";
-
     $prepare = $db->prepare($sql);
     $prepare->execute([
         ':email'                => $email,
@@ -32,6 +39,6 @@ if($mainpassword == $secupassword && $mainpassword != "" && password_verify($ema
 }
 
 else{
-    echo"Je wachtwoorden/emails komen niet overeen, je word teruggestuurd";
-    header("refresh:6;url=../newpassword.php?email=$email");
+    echo"Je wachtwoorden komen niet overeen, je word teruggestuurd";
+    header("refresh:6;url=../newpassword.php?hashedpassword='.$hashedpassword.'");
 }
