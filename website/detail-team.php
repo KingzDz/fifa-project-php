@@ -64,6 +64,13 @@ $user = $prepare->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="edit-del">
             <a href="user-home.php">Ga terug</a>
+            <?php
+            if($teamleader == $username){
+                ?>
+                <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
+            <?php
+            }
+            ?>
         </div>
     </main>
     <?php require 'footer.php' ?>

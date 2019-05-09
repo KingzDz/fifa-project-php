@@ -13,10 +13,16 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $username = $_SESSION['id'];
     require 'config.php';
 
-    $sql = "SELECT * FROM team WHERE leader = '$username'";
+    $sql = "SELECT * FROM team";
 
     $query =$db->query($sql);
     $teams = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $sqluser = "SELECT * FROM team WHERE leader = '$username'";
+
+    $query =$db->query($sqluser);
+    $teamuser = $query->fetchAll(PDO::FETCH_ASSOC);
+
     ?>
     <!doctype html>
     <html class="no-js" lang="">
@@ -49,13 +55,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     <main>
         <div class="main-user">
             <div class="teams">
-                <h2>Jouw aangemaakte teams</h2>
+                <h2>Teams die meedoen</h2>
                 <?php
                 if(empty($teams)){
-                    ?><h2>Je hebt nog geen teams aangemaakt</h2> <?php
+                    ?><h2>Je bent nog geen leider van een team</h2> <?php
                 }
                 else{
                     $count = count($teams);
+                    $countuser = count($teamuser);
                     echo '<ul>';
                     for ($i = 0; $i < $count; $i++) {
                         $title = htmlentities($teams[$i]['teamname']);
@@ -66,7 +73,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
 
 
-                    echo  "<h2>Je bent leider van $count team(s)</h2>";
+                    echo  "<h2>Je bent leider van $countuser team(s)</h2>";
                 }
                 ?>
             </div>
