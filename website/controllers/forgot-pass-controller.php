@@ -9,11 +9,14 @@
 require 'config.php';
 
 $email = $_POST['email'];
+$hashedemail = password_hash($email, PASSWORD_DEFAULT);
 
-$sqlemail = "SELECT * FROM user WHERE email = '$email'";
-$query =$db->query($sqlemail);
+$sqlemail = "SELECT * FROM user WHERE email = :email";
+$prepare = $db->prepare($sqlemail);
+$prepare->execute([
+    ':email' => $email
+]);
 $result = $query->fetch();
-$hashedemail = password_hash($result['email'], PASSWORD_DEFAULT);
 
 if ($email == $result['email']){
     header("refresh:8;url=../index.php");
