@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -19,7 +23,8 @@
 
 <body>
 <!--[if IE]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
 <![endif]-->
 
 <!-- Add your site or application content here -->
@@ -27,9 +32,18 @@
     <div class="main-content">
         <div class="nav-index">
             <div class="navigation">
-                <a href="index.php">Home</a>
+                <?php if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) : ?>
+                    <a href="index.php">Home</a>
+                <?php else : ?>
+                    <style type="text/css">
+                        .login-btn{
+                            visibility: hidden;
+                        }
+                    </style>
+                    <a href="controllers/log-out.php">Logout</a>
+                <?php endif;?>
                 <img src="img/FIFA-logo.png" alt="FIFA-logo">
-                <a href="user-login.php">Login</a>
+                <a class="login-btn" href="user-login.php">Login</a>
             </div>
         </div>
 
