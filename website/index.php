@@ -32,18 +32,9 @@ session_start();
     <div class="main-content">
         <div class="nav-index">
             <div class="navigation">
-                <?php if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) : ?>
-                    <a href="index.php">Home</a>
-                <?php else : ?>
-                    <style type="text/css">
-                        .login-btn{
-                            visibility: hidden;
-                        }
-                    </style>
-                    <a href="controllers/log-out.php">Logout</a>
-                <?php endif;?>
+                <a href="index.php">Home</a>
                 <img src="img/FIFA-logo.png" alt="FIFA-logo">
-                <a class="login-btn" href="user-login.php">Login</a>
+                <a href="user-login.php">Login</a>
             </div>
         </div>
 
