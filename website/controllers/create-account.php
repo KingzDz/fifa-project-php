@@ -37,8 +37,11 @@ else {
         ':username' => $username,
     ]);
 
-    $sqlemail = "SELECT * FROM user WHERE email = '$email'";
-    $query =$db->query($sqlemail);
+    $sqlemail = "SELECT * FROM user WHERE email = :email";
+    $preparemail = $db->prepare($sqlemail);
+    $preparemail->execute([
+        ':email' => $email
+    ]);
     $result = $query->fetch();
 
     $id = $result['id'];
