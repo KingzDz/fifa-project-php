@@ -9,6 +9,7 @@ require 'config.php';
 $id = $_GET['id'];
 $teamname = $_POST['teamname'];
 $players = $_POST['players'];
+$count = count($teamname);
 
 if(empty($teamname) || empty($players))
 {
