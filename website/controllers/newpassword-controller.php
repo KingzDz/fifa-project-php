@@ -23,23 +23,22 @@ $result = $prepare->fetch(PDO::FETCH_ASSOC);
 
 $email = $result['email'];
 
-if($mainpassword == $secupassword && $mainpassword != "" && $hash == $result['password'])
-{
+if($mainpassword == $secupassword && $mainpassword != "" && $hash == $result['password']){
 
-    $hashedpassword = password_hash($mainpassword, PASSWORD_DEFAULT);
+    $hashedpassword = password_hash ( $mainpassword , PASSWORD_DEFAULT);
 
     $sql = "UPDATE user SET password = :password WHERE email = :email";
     $prepare = $db->prepare($sql);
     $prepare->execute([
-        ':email' => $email,
-        ':password' => $hashedpassword
+        ':email'                => $email,
+        ':password'             => $hashedpassword
     ]);
 
     echo "Je wachtwoord is succesvol aangepast, je word nu teruggestuurd";
     header("refresh:6;url=../user-login.php");
 }
 
-    else {
-        echo "Je wachtwoorden/emails komen niet overeen, je word teruggestuurd";
-        header("refresh:6;url=../newpassword.php?email='.$email.$hashedemail.");
-    }
+else{
+    echo"Je wachtwoorden komen niet overeen, je word teruggestuurd";
+    header("refresh:6;url=../newpassword.php?hashedpassword='.$hashedpassword.'");
+}
