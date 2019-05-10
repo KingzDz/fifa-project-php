@@ -21,8 +21,11 @@ else if(strlen($password) < 7){
     echo 'Wachtwoord is te kort, gebruik een wachtwoord van minimaal 7 karakters';
 }
 
-$sqlemail = "SELECT * FROM user WHERE email = '$email'";
-$query =$db->query($sqlemail);
+$sqlemail = "SELECT * FROM user WHERE email = :email";
+$prepare = $db->prepare($sqlemail);
+$prepare->execute([
+    ':email' => $email
+]);
 $result = $query->fetch();
 
 if ($email == $result['email']){
@@ -32,17 +35,10 @@ else {
     $sql = "INSERT  INTO user (email, password, username) VALUES (:email, :password, :username)";
     $prepare = $db->prepare($sql);
     $prepare->execute([
-        ':email' => $email,
-        ':password' => $hashedpassword,
-        ':username' => $username,
+        ':email'    => htmlentities($email),
+        ':password' => htmlentities($hashedpassword),
+        ':username' => htmlentities($username),
     ]);
-
-    $sqlemail = "SELECT * FROM user WHERE email = :email";
-    $preparemail = $db->prepare($sqlemail);
-    $preparemail->execute([
-        ':email' => $email
-    ]);
-    $result = $query->fetch();
 
     $id = $result['id'];
 
