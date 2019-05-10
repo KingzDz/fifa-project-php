@@ -12,14 +12,18 @@ session_start();
 $teamname = $_POST['teamname'];
 $players = $_POST['players'];
 $id = $_SESSION['id'];
+$count = count($teamname);
 
 if(empty($teamname) || empty($players))
 {
     echo "Je bent de teamnaam of spelers vergeten";
     header("refresh:6;url=create-team.php");
+    exit();
 }
-else if(strlen($teamname) < 3){
-    echo 'Je teamname is te kort gebruik minimaal 3 karakters';
+else if($count < 3 || $count > 15){
+    echo 'Je teamname klopt niet gebruik minimaal 3 karakters en maximaal 15';
+    header( "refresh:6;url=../create-team.php" );
+    exit();
 }
 
 $sqlteam = "SELECT * FROM team WHERE teamname = '$teamname'";

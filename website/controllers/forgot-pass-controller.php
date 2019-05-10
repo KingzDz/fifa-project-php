@@ -34,7 +34,6 @@ sybrandbos.nl/website/newpassword.php?hashedpassword='.$hashedpassword.'
 ------------------------
 
 Ken jij deze activiteit niet? dan kan je deze mail negeren
- t
 ';
 
     $headers = 'From:noreply@fifa-project.nl';

@@ -80,6 +80,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             <div class="create-team-button">
                 <button onclick="window.location.href = 'create-team.php';">Team maken</button>
                 <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
+                <button onclick="window.open('Fifa-projectapp.zip')">Download</button>
             </div>
         </div>
     </main>

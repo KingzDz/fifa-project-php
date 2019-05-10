@@ -41,7 +41,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 </div>
                 <form id="create-team-form" action="controllers/create-team-controller.php" method="post">
                     <label for="name">Teamnaam</label>
-                    <input type="text" name="teamname" required="">
+                    <input type="text" name="teamname" required="" minlength="3" maxlength="15">
                     <label for="players">Aantal spelers</label>
                     <select name="players" required="">
                         <option value="6">6 spelers</option>

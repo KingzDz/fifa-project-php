@@ -34,11 +34,17 @@ if($mainpassword == $secupassword && $mainpassword != "" && $hash == $result['pa
         ':password'             => $hashedpassword
     ]);
 
-    echo "Je wachtwoord is succesvol aangepast, je word nu teruggestuurd";
-    header("refresh:6;url=../user-login.php");
-}
+        echo "Je wachtwoord is succesvol aangepast, je word nu teruggestuurd";
+        header("refresh:6;url=../user-login.php");
+    }
 
+    else{
+        echo"Je wachtwoorden/emails komen niet overeen, je word teruggestuurd";
+        header("refresh:6;url=../newpassword.php?email='.$email.$hashedemail.");
+    }
+}
 else{
     echo"Je wachtwoorden komen niet overeen, je word teruggestuurd";
     header("refresh:6;url=../newpassword.php?hashedpassword='.$hashedpassword.'");
 }
+
