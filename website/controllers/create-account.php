@@ -21,28 +21,40 @@ else if(strlen($password) < 7){
     echo 'Wachtwoord is te kort, gebruik een wachtwoord van minimaal 7 karakters';
 }
 
-$sqlemail = "SELECT * FROM user WHERE email = '$email'";
-$query =$db->query($sqlemail);
-$result = $query->fetch();
-
-if ($email == $result['email']){
-    echo "Er bestaat al een account met dit email";
-}
-else {
-    $sql = "INSERT  INTO user (email, password, username) VALUES (:email, :password, :username)";
-    $prepare = $db->prepare($sql);
-    $prepare->execute([
-        ':email' => $email,
-        ':password' => $hashedpassword,
-        ':username' => $username,
-    ]);
+else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     $sqlemail = "SELECT * FROM user WHERE email = '$email'";
-    $query =$db->query($sqlemail);
+    $query = $db->query($sqlemail);
     $result = $query->fetch();
 
-    $id = $result['id'];
+    if ($email == $result['email']) {
+        echo "Er bestaat al een account met dit email, je word teruggestuurd";
+        header( "refresh:6;url=../user-login.php" );
+        exit();
 
-    header("Location: ../index.php");
+    } else {
+        $sql = "INSERT  INTO user (email, password, username) VALUES (:email, :password, :username)";
+        $prepare = $db->prepare($sql);
+        $prepare->execute([
+            ':email' => $email,
+            ':password' => $hashedpassword,
+            ':username' => $username,
+        ]);
 
+        $sqlemail = "SELECT * FROM user WHERE email = '$email'";
+        $query = $db->query($sqlemail);
+        $result = $query->fetch();
+
+        $id = $result['id'];
+
+        echo "Account succesvol aangemaakt, je kan nu aanmelden";
+        header( "refresh:6;url=../user-login.php" );
+        exit();
+
+    }
+}
+else{
+    echo "Email klopt niet, je word teruggestuurd";
+    header( "refresh:6;url=../user-login.php" );
+    exit();
 }
