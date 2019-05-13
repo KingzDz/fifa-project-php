@@ -27,6 +27,11 @@ $prepare->execute([
     ':id' => $teamleader
 ]);
 $user = $prepare->fetch(PDO::FETCH_ASSOC);
+
+$playernames = "SELECT * FROM user WHERE team = $id";
+$query = $db->query($playernames);
+$players = $query->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
     <!doctype html>
     <html class="no-js" lang="">
@@ -61,6 +66,14 @@ $user = $prepare->fetch(PDO::FETCH_ASSOC);
             <h2>Teamnaam: <?php echo $team['teamname'] ?></h2>
             <p>Aantal spelers: <?php echo $team['players']?></p>
             <p>Leider: <?php echo $user['username'] ?></p>
+            <p>Spelers:</p>
+            <?php foreach ($players as $player)
+            {
+            $playername = htmlentities($player['username']);
+
+            echo "<li>$playername</li>";
+
+            }?>
         </div>
         <div class="edit-del">
             <a href="user-home.php">Ga terug</a>
@@ -68,6 +81,7 @@ $user = $prepare->fetch(PDO::FETCH_ASSOC);
             if($teamleader == $username){
                 ?>
                 <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
+                <a href="add-players.php?id=<?php echo $team['id'] ?>">Spelers toevoegen</a>
             <?php
             }
             ?>

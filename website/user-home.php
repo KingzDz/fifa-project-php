@@ -56,24 +56,51 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <div class="main-user">
             <div class="teams">
                 <h2>Teams die meedoen</h2>
+
                 <?php
-                if(empty($teams)){
-                    ?><h2>Je bent nog geen leider van een team</h2> <?php
+                if(empty($teams))
+                {
+                    ?>
+                    <h2>Er zijn nog geen teams aangemaakt</h2>
+                    <?php
                 }
-                else{
-                    $count = count($teams);
-                    $countuser = count($teamuser);
-                    echo '<ul>';
-                    for ($i = 0; $i < $count; $i++) {
-                        $title = htmlentities($teams[$i]['teamname']);
-                        echo "<li><a href='detail-team.php?id={$teams[$i]['id']}'> $title</a></li>";
+                else
+                {
+                    foreach ($teams as $team)
+                    {
+                        $title = htmlentities($team['teamname']);
+                        if($team['leader'] != $username){
+                            echo "<li><a href='detail-team.php?id={$team['id']}'> $title</a></li>";
+                        }
+                        else{
+
+                        }
 
                     }
-                    echo '</ul>';
 
+                    $countuser = count($teamuser);
 
+                    if($countuser == 1)
+                    {
+                        echo  "<h2>Je bent leider van $countuser team</h2>";
 
-                    echo  "<h2>Je bent leider van $countuser team(s)</h2>";
+                    }
+                    else
+                    {
+                        echo  "<h2>Je bent leider van $countuser teams</h2>";
+                    }
+                    foreach ($teams as $team)
+                    {
+                        $title = htmlentities($team['teamname']);
+                        if($team['leader'] == $username){
+                            echo "<li><a href='detail-team.php?id={$team['id']}'> $title</a></li>";
+                        }
+                        else{
+
+                        }
+
+                    }
+
                 }
                 ?>
             </div>
