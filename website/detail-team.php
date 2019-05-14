@@ -63,17 +63,38 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
     <?php require 'header.php' ?>
     <main>
         <div class="main-team">
-            <h2>Teamnaam: <?php echo $team['teamname'] ?></h2>
-            <p>Aantal spelers: <?php echo $team['players']?></p>
-            <p>Leider: <?php echo $user['username'] ?></p>
-            <p>Spelers:</p>
-            <?php foreach ($players as $player)
-            {
-            $playername = htmlentities($player['username']);
+            <div class="info-table">
+            <table>
+                <tr>
+                    <th>Teamnaam</th>
+                    <th>Aantal spelers</th>
+                    <th>Leider</th>
+                </tr>
+                <tr>
+                    <td><?php echo $team['teamname'] ?></td>
+                    <td><?php echo $team['players']?></td>
+                    <td><?php echo $user['username'] ?></td>
+                </tr>
+            </table>
+            </div>
+            <div class="player-table">
+            <table>
+                <tr>
+                    <th>Spelers</th>
+                </tr>
+                <tr>
+                    <?php foreach ($players as $player)
+                    {
+                        $playername = htmlentities($player['username']);
 
-            echo "<li>$playername</li>";
+                        echo "<td>$playername</td>";
 
-            }?>
+                    }?>
+                </tr>
+            </table>
+            </div>
+
+
         </div>
         <div class="edit-del">
             <a href="user-home.php">Ga terug</a>
