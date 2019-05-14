@@ -27,6 +27,11 @@ $prepare->execute([
     ':id' => $teamleader
 ]);
 $user = $prepare->fetch(PDO::FETCH_ASSOC);
+
+$playernames = "SELECT * FROM user WHERE team = $id";
+$query = $db->query($playernames);
+$players = $query->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -58,9 +63,36 @@ $user = $prepare->fetch(PDO::FETCH_ASSOC);
 <?php require 'header.php' ?>
 <main>
     <div class="main-team">
-        <h2>Teamnaam: <?php echo $team['teamname'] ?></h2>
-        <p>Aantal spelers: <?php echo $team['players']?></p>
-        <p>Leider: <?php echo $user['username'] ?></p>
+        <div class="info-table">
+            <table>
+                <tr>
+                    <th>Teamnaam</th>
+                    <th>Aantal spelers</th>
+                    <th>Leider</th>
+                </tr>
+                <tr>
+                    <td><?php echo $team['teamname'] ?></td>
+                    <td><?php echo $team['players']?></td>
+                    <td><?php echo $user['username'] ?></td>
+                </tr>
+            </table>
+        </div>
+        <div class="player-table" align="center">
+            <p>Spelers</p>
+            <table>
+                <tr>
+                </tr>
+                <tr>
+                    <?php foreach ($players as $player)
+                    {
+                        $playername = htmlentities($player['username']);
+
+                        echo "<td>$playername</td>";
+
+                    }?>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="edit-del">
         <a href="admin-page.php">Ga terug</a>
