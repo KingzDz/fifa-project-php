@@ -7,7 +7,7 @@
  */
 
 $dbHost = 'localhost';
-$dbUser = 'jai';
+$dbUser = 'root';
 $dbPass = '';
 $dbName = 'fifa';
 
