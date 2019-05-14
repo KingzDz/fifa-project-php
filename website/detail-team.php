@@ -77,10 +77,10 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </table>
             </div>
-            <div class="player-table">
+            <div class="player-table" align="center">
+                <p>Spelers</p>
             <table>
                 <tr>
-                    <th>Spelers</th>
                 </tr>
                 <tr>
                     <?php foreach ($players as $player)
