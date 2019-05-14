@@ -65,8 +65,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                     echo '</ul>';
 
 
-
-                    echo  "<h2>Er zijn $count team(s)</h2>";
+                    if ($count == 0) {
+                        echo  "<h2>Er zijn geen teams hier.</h2>";
+                    } else if ($count == 1) {
+                        echo  "<h2>Er is $count team.</h2>";
+                    } else {
+                        echo  "<h2>Er zijn $count teams.</h2>";
+                    }
+                    
                 }
                 ?>
             </div>
