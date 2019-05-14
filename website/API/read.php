@@ -3,6 +3,15 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UFT-8");
 
+// Checks if the API key has been given
+if (!isset($_GET['key']) && $_GET['key'] = 'J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3') {
+	$msg = 'ERROR -  No API key has been given.';
+	echo json_encode(
+		array("message" => $msg)
+	);
+	exit;
+}
+
 require 'config.php';
 include_once 'team.php';
 

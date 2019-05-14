@@ -43,18 +43,28 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 
 	$teamsLength = count($teams);
 
-	foreach ($teams as $team) {
-		$teams = array_slice($teams, 1, $teamsLength);
-		
-		foreach ($teams as $otherTeam) {
-			$teamName = $team['teamname'];
-			$otherTeamName = $otherTeam['teamname'];
-			echo '<ul>';
-			echo "<li>$teamName tegen $otherTeamName</li>";
-			echo '</ul>';
+	if ($teamsLength > 1) {
+		foreach ($teams as $team) {
+			$teams = array_slice($teams, 1, $teamsLength);
+			
+			foreach ($teams as $otherTeam) {
+				$teamName = $team['teamname'];
+				$otherTeamName = $otherTeam['teamname'];
+				echo '<ul>';
+				echo "<li>$teamName tegen $otherTeamName</li>";
+				echo '</ul>';
+			}
+			echo '<br>';
 		}
-		echo '<br>';
+	} 
+	else if ($teamsLength == 1) {
+		echo 'Er is maar 1 team in de competitie. Het is dus niet mogelijk om een wedstrijd te spelen.';
 	}
+	else if ($teamsLength == 0) {
+		echo 'Er zitten geen teams in de competitie.';
+	}
+
+	
 
 }
 else {
