@@ -29,7 +29,7 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     if ($email == $result['email']) {
         echo "Er bestaat al een account met dit email, je word teruggestuurd";
-        header( "refresh:6;url=../user-login.php" );
+        header( "refresh:4;url=../user-login.php" );
         exit();
 
     } else {
@@ -47,14 +47,14 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
         $id = $result['id'];
 
-        echo "Account succesvol aangemaakt, je kan nu aanmelden";
-        header( "refresh:6;url=../user-login.php" );
+        echo "Account succesvol aangemaakt, je word nu teruggestuurd";
+        header( "refresh:4;url=../user-login.php" );
         exit();
 
     }
 }
 else{
     echo "Email klopt niet, je word teruggestuurd";
-    header( "refresh:6;url=../user-login.php" );
+    header( "refresh:4;url=../user-login.php" );
     exit();
 }

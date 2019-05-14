@@ -14,8 +14,8 @@ $password = $_POST['password'];
 
 if(empty($username) || empty($password))
 {
-    echo "Je wachtwoord of gebruikersnaam is onjuist";
-    header("refresh:6;url=../user-login.php");
+    echo "Je wachtwoord of gebruikersnaam is onjuist, je wordt nu teruggestuurd";
+    header("refresh:4;url=../user-login.php");
 }
 else {
     $sql = "SELECT * FROM user WHERE username = :username";
@@ -50,7 +50,7 @@ else {
     }
 
     else {
-        echo "Je wachtwoord of gebruikersnaam is onjuist";
-        header("refresh:6;url=../user-login.php");
+        echo "Je wachtwoord of gebruikersnaam is onjuist, je wordt nu teruggestuurd";
+        header("refresh:4;url=../user-login.php");
     }
 }

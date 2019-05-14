@@ -16,13 +16,13 @@ $teamnamelength= strlen($teamname);
 
 if(empty($teamname) || empty($players))
 {
-    echo "Je bent de teamnaam of spelers vergeten";
-    header("refresh:6;url=create-team.php");
+    echo "Je bent de teamnaam of spelers vergeten, je wordt nu teruggestuurd";
+    header("refresh:4;url=create-team.php");
     exit();
 }
 else if($teamnamelength < 3 || $teamnamelength > 15){
-    echo 'Je teamname klopt niet gebruik minimaal 3 karakters en maximaal 15';
-    header( "refresh:6;url=../create-team.php" );
+    echo 'Je teamname klopt niet gebruik minimaal 3 karakters en maximaal 15, je wordt nu teruggestuurd';
+    header( "refresh:4;url=../create-team.php" );
     exit();
 }
 
@@ -31,7 +31,8 @@ $query =$db->query($sqlteam);
 $result = $query->fetch();
 
 if ($teamname == $result['teamname']){
-    echo "Er bestaat al een team met deze naam";
+    echo "Er bestaat al een team met deze naam, je wordt nu teruggestuurd";
+    header("refresh:4;url=../create-team.php");
 }
 else {
     $sql = "INSERT  INTO team (teamname, players, leader) VALUES (:teamname, :players, :leader)";
@@ -42,7 +43,7 @@ else {
         ':leader' => $id,
     ]);
 
-    echo "Team succesvol aangemaakt";
-    header("Location: ../user-home.php");
+    echo "Team succesvol aangemaakt, je wordt nu teruggestuurd";
+    header("refresh:4;url=../user-home.php");
 
 }
