@@ -52,7 +52,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 <h2>Teams</h2>
                 <?php
                 if(empty($teams)){
-                    ?><h2>Er zijn nog geen teams aangemaakt</h2> <?php
+                    ?><h2>Er zijn nog geen teams aangemaakt</h2><?php
                 }
                 else{
                     $count = count($teams);

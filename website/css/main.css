@@ -288,7 +288,18 @@ textarea {
 }
 
 
+/* ------ MATCH SCHEDULE ------ */
 
+
+.container {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main {
+  display: block;
+}
 
 
 

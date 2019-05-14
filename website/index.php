@@ -34,14 +34,22 @@ session_start();
             <div class="navigation">
                 <a href="index.php">Home</a>
                 <img src="img/FIFA-logo.png" alt="FIFA-logo">
-                <a href="user-login.php">Login</a>
+
+                <?php 
+                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                    echo '<a href="user-home.php">Account</a>';
+                }
+                else {
+                    echo '<a href="user-login.php">Login</a>';
+                }
+                ?>
             </div>
         </div>
 
         <div class="title">
             <h1>Welkom op FIFA project</h1>
             <h2>Bekijk hieronder de schema's</h2>
-            <button onclick="window.location.href = '#about';">Schema's</button>
+            <button onclick="window.location.href = 'match-schedule.php';">Schema's</button>
         </div>
 
 
