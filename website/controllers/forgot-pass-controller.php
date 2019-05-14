@@ -19,9 +19,9 @@ $result = $prepare->fetch(PDO::FETCH_ASSOC);
 $hashedpassword = $result['password'];
 
 if ($email == $result['email']){
-    header("refresh:8;url=../index.php");
+    header("refresh:4;url=../index.php");
 
-    echo"Er is een mail verstuurd om je wachtwoord te reseten";
+    echo"Er is een mail verstuurd om je wachtwoord te reseten, je wordt nu teruggestuurd";
 
     $to      = $email;
     $subject = 'Wachtwoord vergeten';
