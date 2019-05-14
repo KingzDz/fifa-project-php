@@ -47,14 +47,13 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 		foreach ($teams as $team) {
 			$teams = array_slice($teams, 1, $teamsLength);
 			
+			echo '<ul>';
 			foreach ($teams as $otherTeam) {
 				$teamName = $team['teamname'];
 				$otherTeamName = $otherTeam['teamname'];
-				echo '<ul>';
 				echo "<li>$teamName tegen $otherTeamName</li>";
-				echo '</ul>';
 			}
-			echo '<br>';
+			echo '</ul>';
 		}
 	} 
 	else if ($teamsLength == 1) {
