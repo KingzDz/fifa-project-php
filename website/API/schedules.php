@@ -1,6 +1,5 @@
 <?php
-require '../config.php';
-
+require 'config.php';
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UFT-8");
 
@@ -9,11 +8,12 @@ $query = $db->query($sql);
 $teams = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $competition = array();
+$competition['matches'] = array();
 
 foreach ($teams as $team){
     foreach ($teams as $opponoment) {
         if($team['teamname'] != $opponoment['teamname']){
-            array_push($competition, $team['teamname'] . ' - ' . $opponoment['teamname']);
+            array_push($competition['matches'], $team['teamname'] . ' - ' . $opponoment['teamname']);
 
         }
     }
