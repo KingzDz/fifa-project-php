@@ -42,6 +42,13 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 	$teams = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
 	$teamsLength = count($teams);
+    ?>
+        <table align="center">
+            <tr>
+                <th>Team 1</th>
+                <th>Team 2</th>
+            </tr>
+        <?php
 
 	foreach ($teams as $team) {
 		$teams = array_slice($teams, 1, $teamsLength);
@@ -49,12 +56,20 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 		foreach ($teams as $otherTeam) {
 			$teamName = $team['teamname'];
 			$otherTeamName = $otherTeam['teamname'];
-			echo '<ul>';
-			echo "<li>$teamName tegen $otherTeamName</li>";
-			echo '</ul>';
+            ?>
+            <tr>
+            <?php
+
+			echo "<td>$teamName</td>";
+            echo "<td>$otherTeamName</td>";
+
 		}
-		echo '<br>';
+        ?>
+        </tr>
+        <?php
+
 	}
+        ?> </table> <?php
 
 }
 else {

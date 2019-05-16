@@ -239,6 +239,7 @@ textarea {
     justify-content: space-around;
     grid-column: 2 / 3;
     margin: 40px 0px;
+    margin-bottom: 300px;
 }
 
 .create-team-button{
@@ -260,6 +261,7 @@ textarea {
     justify-content: space-around;
     grid-column: 2 / 3;
     margin: 20px 0px;
+    margin-bottom: 200px;
 }
 
 #forgot{
@@ -292,10 +294,13 @@ textarea {
 
 
 .container {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .main {
@@ -328,8 +333,94 @@ table, th, td {
     width: 100%;
 }
 
+/*index*/
 
+.intro-home{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-column: 1 / 4;
+    margin: 40px 0;
+}
+.title-home h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    text-align: right;
+    margin-bottom: 0;
+}
 
+.title-home p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+    display: block;
+    text-align: right;
+    margin-top: 0;
+}
+
+.text-home {
+    margin: 58px 25px;
+    padding: 0px 20px;
+}
+
+.title-home{
+    padding: 20px;
+
+}
+
+/*footer*/
+
+.footer-content{
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    background-color: #144280;
+}
+
+footer{
+    grid-column: 1 / 4;
+}
+
+.footer-main{
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+
+}
+
+.logo-footer{
+    display: flex;
+    flex-direction: row;
+    font-family: Bebas;
+    color: white;
+    font-size: 20px;
+}
+
+.logo-footer p{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.copyright{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*fonts*/
+
+@font-face {
+    font-family: 'Bebas';
+    src: url('Bebas.woff2') format('woff2'),
+    url('Bebas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 
