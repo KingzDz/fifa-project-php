@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -28,35 +24,17 @@ session_start();
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<main>
-    <div class="main-content">
-        <div class="nav-index">
-            <div class="navigation">
-                <a href="index.php">Home</a>
-                <img src="img/FIFA-logo.png" alt="FIFA-logo">
+<?php require 'header.php'?>
 
-                <?php 
-                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                    echo '<a href="user-home.php">Account</a>';
-                }
-                else {
-                    echo '<a href="user-login.php">Login</a>';
-                }
-                ?>
-            </div>
-        </div>
-
-        <div class="title">
-            <h1>Welkom op FIFA project</h1>
-            <h2>Bekijk hieronder de schema's</h2>
-            <button onclick="window.location.href = 'match-schedule.php';">Schema's</button>
-            <button onclick="window.location.href = 'about.php';">Meer info?</button>
-        </div>
-
-
+<main class="main">
+    <div class="container">
+        <h3>Over het toernooi</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quibusdam voluptatibus quos unde minima incidunt voluptatum hic pariatur vero sequi, distinctio non eum qui soluta architecto saepe autem quae consectetur, accusantium commodi nihil repellendus sit ex. Sequi expedita, quibusdam officia.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A harum ullam magnam numquam, dignissimos tempore quis, vero itaque quaerat sunt nobis alias ipsum similique. Ut aliquam, eveniet hic eos modi?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos quia impedit aut placeat ratione vitae error fugiat officiis blanditiis voluptatem, accusantium distinctio, excepturi nemo libero rem laborum quae dolores. Molestiae minus incidunt error doloremque. Magnam.</p>
     </div>
-    <div class="bar"></div>
 </main>
+
 <?php require 'footer.php'?>
 
 <script src="js/vendor/modernizr-3.7.1.min.js"></script>

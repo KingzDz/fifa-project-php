@@ -7,6 +7,7 @@
  */
 
 session_start();
+
 if($_SESSION['admin'] == true) {
     $_SESSION['admin'] = false;
     $_SESSION['loggedin'] = false;

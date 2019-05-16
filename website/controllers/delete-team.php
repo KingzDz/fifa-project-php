@@ -5,7 +5,8 @@
  * Date: 1-4-2019
  * Time: 09:50
  */
-require 'config.php';
+require '../config.php';
+
 $id = $_GET['id'];
 $sql = "DELETE FROM team WHERE id = :id";
 $prepare = $db->prepare($sql);

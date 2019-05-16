@@ -1,6 +1,7 @@
 <?php
 session_start();
-require 'config.php';
+
+require '../config.php';
 
 $teamid = $_GET['team'];
 $playerid = $_POST['player'];
