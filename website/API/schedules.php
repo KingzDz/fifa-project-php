@@ -20,7 +20,8 @@ foreach ($teams as $team){
 
 if (isset($competition)) {
     http_response_code(200);
-    json_encode($competition);
+    echo json_encode($competition);
+
 }
 else{
     http_response_code(404);
