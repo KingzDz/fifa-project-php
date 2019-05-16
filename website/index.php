@@ -50,6 +50,7 @@ session_start();
             <h1>Welkom op FIFA project</h1>
             <h2>Bekijk hieronder de schema's</h2>
             <button onclick="window.location.href = 'match-schedule.php';">Schema's</button>
+            <button onclick="window.location.href = 'about.php';">Meer info?</button>
         </div>
 
 

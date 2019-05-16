@@ -6,7 +6,7 @@
  * Time: 10:58
  */
 
-require 'config.php';
+require '../config.php';
 session_start();
 
 $teamname = $_POST['teamname'];

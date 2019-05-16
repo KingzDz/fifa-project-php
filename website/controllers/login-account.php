@@ -6,7 +6,7 @@
  * Time: 16:42
  */
 
-require 'config.php';
+require '../config.php';
 session_start();
 
 $username = $_POST['username'];

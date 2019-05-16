@@ -6,7 +6,7 @@
  * Time: 09:34
  */
 
-require 'config.php';
+require '../config.php';
 
 session_start();
 

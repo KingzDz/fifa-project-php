@@ -6,7 +6,7 @@
  * Time: 12:18
  */
 
-require 'config.php';
+require '../config.php';
 
 $email = $_POST['email'];
 

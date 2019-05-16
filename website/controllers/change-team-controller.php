@@ -5,7 +5,8 @@
  * Date: 1-4-2019
  * Time: 09:42
  */
-require 'config.php';
+require '../config.php';
+
 $id = $_GET['id'];
 $teamname = $_POST['teamname'];
 $players = $_POST['players'];

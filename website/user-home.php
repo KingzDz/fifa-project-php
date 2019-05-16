@@ -108,22 +108,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 <button onclick="window.location.href = 'create-team.php';">Team maken</button>
                 <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
                 <button onclick="window.open('Fifa-projectapp.zip')">Download</button>
-
-                <?php
-
-                    $id = $_SESSION['id'];
-                    $sql = "SELECT `admin` FROM `user` WHERE `id` = $id;";
-                    $prepare = $db->prepare($sql);
-                    $prepare->execute();
-
-                    $isAdmin = $prepare->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    if ($isAdmin[0]['admin'] == 1) { ?>
-                        <button onclick="window.open('match-schedule.php')">Wedstrijd schema</button>
-                        <?php
-                    }
-                ?>
-
+                <button onclick="window.open('match-schedule.php')">Wedstrijd schema</button>
             </div>
         </div>
     </main>

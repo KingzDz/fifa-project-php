@@ -50,26 +50,27 @@ if ($scheduleInfo[0]['match-active'] == 1) {
             </tr>
         <?php
 
-	foreach ($teams as $team) {
-		$teams = array_slice($teams, 1, $teamsLength);
-		
-		foreach ($teams as $otherTeam) {
-			$teamName = $team['teamname'];
-			$otherTeamName = $otherTeam['teamname'];
-            ?>
-            <tr>
-            <?php
-
-			echo "<td>$teamName</td>";
-            echo "<td>$otherTeamName</td>";
-
+	if ($teamsLength > 1) {
+		foreach ($teams as $team) {
+			$teams = array_slice($teams, 1, $teamsLength);
+			
+			echo '<ul>';
+			foreach ($teams as $otherTeam) {
+				$teamName = $team['teamname'];
+				$otherTeamName = $otherTeam['teamname'];
+				echo "<li>$teamName tegen $otherTeamName</li>";
+			}
+			echo '</ul>';
 		}
-        ?>
-        </tr>
-        <?php
-
+	} 
+	else if ($teamsLength == 1) {
+		echo 'Er is maar 1 team in de competitie. Het is dus niet mogelijk om een wedstrijd te spelen.';
 	}
-        ?> </table> <?php
+	else if ($teamsLength == 0) {
+		echo 'Er zitten geen teams in de competitie.';
+	}
+
+	
 
 }
 else {
