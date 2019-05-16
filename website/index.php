@@ -56,8 +56,26 @@ session_start();
 
     </div>
     <div class="bar"></div>
+    <div class="intro-home">
+        <div class="title-home">
+            <h3>Info</h3>
+            <p>Alles over het toernooi</p>
+        </div>
+        <div class="text-home">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur
+                at beatae, blanditiis debitis delectus dicta expedita facilis hic illum ipsa pariatur
+                possimus quas qui quisquam rem similique tempore velit?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur
+                at beatae, blanditiis debitis delectus dicta expedita facilis hic illum ipsa pariatur
+                possimus quas qui quisquam rem similique tempore velit?
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur
+                at beatae, blanditiis debitis delectus dicta expedita facilis hic illum ipsa pariatur
+                possimus quas qui quisquam rem similique tempore velit?</p>
+        </div>
+    </div>
+    <?php require 'footer.php'?>
 </main>
-<?php require 'footer.php'?>
+
 
 <script src="js/vendor/modernizr-3.7.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

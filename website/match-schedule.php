@@ -42,6 +42,13 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 	$teams = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
 	$teamsLength = count($teams);
+    ?>
+        <table align="center">
+            <tr>
+                <th>Team 1</th>
+                <th>Team 2</th>
+            </tr>
+        <?php
 
 	if ($teamsLength > 1) {
 		foreach ($teams as $team) {
