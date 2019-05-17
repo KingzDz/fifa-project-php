@@ -8,6 +8,8 @@
 
 require '../config.php';
 
+session_start();
+
 $email = $_POST['email'];
 
 $sqlemail = "SELECT * FROM user WHERE email = :email";

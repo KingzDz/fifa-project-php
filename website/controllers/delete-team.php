@@ -7,6 +7,8 @@
  */
 require '../config.php';
 
+session_start();
+
 $id = $_GET['id'];
 $sql = "DELETE FROM team WHERE id = :id";
 $prepare = $db->prepare($sql);

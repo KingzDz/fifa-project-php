@@ -7,6 +7,8 @@
  */
 require '../config.php';
 
+session_start();
+
 $id = $_GET['id'];
 $teamname = $_POST['teamname'];
 $players = $_POST['players'];

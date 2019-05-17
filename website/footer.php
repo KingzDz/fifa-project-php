@@ -5,6 +5,7 @@
  * Date: 15-4-2019
  * Time: 11:26
  */
+session_start();
 ?>
 <footer>
     <div class="footer-content">
