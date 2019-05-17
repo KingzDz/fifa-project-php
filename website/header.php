@@ -12,7 +12,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
             <a href="index.php">Home</a>
             <img src="img/FIFA-logo.png" alt="FIFA-logo">
             <?php
-            if(!isset($_SESSION['admin'])){
+            if($_SESSION['admin'] == true){
                 ?>
                 <a href="admin-page.php">Account</a>
                 <?php

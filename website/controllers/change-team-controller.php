@@ -37,6 +37,14 @@ if (isset($_GET['id']))
         ':players'              => $players,
         ':id'                   => $id
     ]);
+
+    $sqlteam = "UPDATE user SET team = NULL WHERE team = :id";
+    $prepare = $db->prepare($sqlteam);
+    $prepare->execute([
+        ':id' => $id
+    ]);
+
+
     echo "Team is succesvol aangepast, je word nu teruggestuurd";
     header( "refresh:4;url=../user-home.php" );
 }
