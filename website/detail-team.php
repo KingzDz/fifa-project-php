@@ -77,6 +77,7 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </table>
             </div>
+
             <div class="player-table" align="center">
                 <p>Spelers</p>
             <table>
