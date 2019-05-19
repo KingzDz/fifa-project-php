@@ -90,6 +90,38 @@ else {
 		echo 'Er is op dit moment geen competitie actief, voor meer info contact de organisator.';
 	}
 }
+
+$starttime = 9.00;
+$matchtime = 0;
+$pause = 0;
+
+foreach($teams as $team){
+
+    $time = $starttime + $matchtime + $pause;
+
+    $matchtime + 20;
+    $pause + 5;
+
+    foreach ($teams as $team){
+        echo "team vs team";
+echo $time;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
