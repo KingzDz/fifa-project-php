@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 ?>
 <!doctype html>
@@ -33,8 +34,17 @@ require 'config.php';
 $sql = "SELECT * FROM `match-schedule` WHERE `id` = 1;";
 $prepare = $db->prepare($sql);
 $prepare->execute();
-
 $scheduleInfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+$starttime = $scheduleInfo[0]['starttime'];
+$match = $scheduleInfo[0]['matchtime'];
+$pause = $scheduleInfo[0]['pause'];
+$zero = 0;
+$minutes = 0;
+$fields = $scheduleInfo[0]['fields'];
+$matches = 0;
+$played = 0;
+$field = 1;
 
 // If match schedule is already generated
 if ($scheduleInfo[0]['match-active'] == 1) {
@@ -49,10 +59,13 @@ if ($scheduleInfo[0]['match-active'] == 1) {
         <table align="center">
             <tr>
                 <th>Wedstrijden</th>
+                <th>Tijd</th>
+                <th>Veld</th>
             </tr>
         <?php
 
 	if ($teamsLength > 1) {
+	    $i = 1;
 
 	    foreach ($teams as $team) {
 
@@ -63,12 +76,49 @@ if ($scheduleInfo[0]['match-active'] == 1) {
                 $teamName = $team['teamname'];
                 $otherTeamName = $otherTeam['teamname'];
                 echo "<td>$teamName tegen $otherTeamName</td>";
+                if($minutes == 0){
+                    echo "<td>$starttime : $minutes$zero</td>";
+                }
+                elseif ($minutes <= 10){
+                    echo "<td>$starttime : 0$minutes</td>";
+                }
+                else{
+                    echo "<td>$starttime : $minutes</td>";
+                }
+                echo"<td>$field</td>";
                 echo '</tr>';
+
+                $field++;
+
+
+                if($field > $fields){
+                    $field = 1;
+                }
+
+                $matches++;
+                if($matches >= $fields){
+                    $minutes += $match;
+                    $minutes += $pause;
+                    $matches = 0;
+
+                    if($minutes >= 60){
+                        $starttime += 1;
+                        $minutes -= 60;
+                    }
+
+                    $i++;
+                }
+                $i = 1;
             }
+
+
         }
-
-
+	    echo "</table>";
+        echo "<p>*Een wedstrijd duurt $match min</p>";
+        echo "<p>*Tussen de wedstrijden zit $pause min pauze</p>";
 	}
+
+
 	else if ($teamsLength == 1) {
 		echo 'Er is maar 1 team in de competitie. Het is dus niet mogelijk om een wedstrijd te spelen.';
 	}
@@ -91,22 +141,6 @@ else {
 	}
 }
 
-$starttime = 9.00;
-$matchtime = 0;
-$pause = 0;
-
-foreach($teams as $team){
-
-    $time = $starttime + $matchtime + $pause;
-
-    $matchtime + 20;
-    $pause + 5;
-
-    foreach ($teams as $team){
-        echo "team vs team";
-echo $time;
-  }
-}
 
 
 
