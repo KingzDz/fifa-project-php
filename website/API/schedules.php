@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../config.php';
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UFT-8");
 
@@ -11,7 +11,9 @@ $competition = array();
 $competition['matches'] = array();
 
 foreach ($teams as $team){
+    $teams = array_slice($teams, 1 , count($teams));
     foreach ($teams as $opponoment) {
+
         if($team['teamname'] != $opponoment['teamname']){
             array_push($competition['matches'], $team['teamname'] . ' - ' . $opponoment['teamname']);
 
