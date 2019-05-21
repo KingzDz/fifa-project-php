@@ -141,25 +141,8 @@ else {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 
-
-
-
 	</div>
+    <?php require 'footer.php'; ?>
 </main>
