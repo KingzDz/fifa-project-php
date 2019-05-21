@@ -1,7 +1,5 @@
-<?php
+<?php session_start(); ?>
 
-session_start();
-?>
 <!doctype html>
     <html class="no-js" lang="">
 
@@ -31,14 +29,16 @@ session_start();
 
 require 'config.php';
 
+// Fetches match info like time, match duration, etc. from database
 $sql = "SELECT * FROM `match-schedule` WHERE `id` = 1;";
 $prepare = $db->prepare($sql);
 $prepare->execute();
 $scheduleInfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
-$starttime = $scheduleInfo[0]['starttimehour'];
-$match = $scheduleInfo[0]['matchtime'];
-$pause = $scheduleInfo[0]['pause'];
+//
+$hour = $scheduleInfo[0]['starttimehour'];
+$matchDuration = $scheduleInfo[0]['matchtime'];
+$rest = $scheduleInfo[0]['pause'];
 $zero = 0;
 $minutes = $scheduleInfo[0]['starttimemin'];
 $fields = $scheduleInfo[0]['fields'];
@@ -46,8 +46,12 @@ $matches = 0;
 $played = 0;
 $field = 1;
 
-// If match schedule is already generated
+$startTime = date($hour.':'.$minutes); // Time when the first matches are played
+
+// Checks whether the competition is already generated
 if ($scheduleInfo[0]['match-active'] == 1) {
+
+    // Fetches all teams from the database
 	$sql = "SELECT `teamname` FROM `team`;";
 	$prepare = $db->prepare($sql);
 	$prepare->execute();
@@ -56,66 +60,59 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 
 	$teamsLength = count($teams);
     ?>
+
         <table align="center">
             <tr>
                 <th>Wedstrijden</th>
                 <th>Tijd</th>
                 <th>Veld</th>
             </tr>
-        <?php
 
+    <?php
+
+    // When there is more then one team
 	if ($teamsLength > 1) {
-	    $i = 1;
 
+        // This generates the match schedule
 	    foreach ($teams as $team) {
 
-	        $teams = array_slice($teams, 1, $teamsLength);
+	        $teams = array_slice($teams, 1, $teamsLength); // Removes the first team everytime so you get a half competition
 
-            foreach ($teams as $otherTeam) {
+            foreach ($teams as $rivalTeam) {
+
+                // Time when this match ends
+                $endTime = date('h:i', strtotime('+'.$matchDuration.' minutes', strtotime($startTime)));
+
                 echo '<tr>';
-                $teamName = $team['teamname'];
-                $otherTeamName = $otherTeam['teamname'];
-                echo "<td>$teamName tegen $otherTeamName</td>";
-                if($minutes == 0){
-                    echo "<td>$starttime : $minutes$zero</td>";
-                }
-                elseif ($minutes <= 10){
-                    echo "<td>$starttime : 0$minutes</td>";
-                }
-                else{
-                    echo "<td>$starttime : $minutes</td>";
-                }
-                echo"<td>$field</td>";
+                    $teamName = $team['teamname'];
+                    $rivalTeamName = $rivalTeam['teamname'];
+                    echo "<td>$teamName tegen $rivalTeamName</td>";
+                    echo "<td>$startTime</td>";
+                    echo"<td>$field</td>";
                 echo '</tr>';
 
-                $field++;
-
-
-                if($field > $fields){
-                    $field = 1;
-                }
-
-                $matches++;
-                if($matches >= $fields){
-                    $minutes += $match;
-                    $minutes += $pause;
-                    $matches = 0;
-
-                    if($minutes >= 60){
-                        $starttime += 1;
-                        $minutes -= 60;
-                    }
-
-                    $i++;
-                }
-                $i = 1;
+                // Time when the next game gets played
+                $startTime = date('h:i', strtotime('+'.$rest.' minutes', strtotime($endTime)));
             }
 
+            // If there are fields available
+            if ($field < $fields) {
 
+                $field++; // Next team plays on next field
+
+                // Resets time so different matches can play on the same time
+                $startTime = date($hour.':'.$minutes);
+            }
+            // When all fields are ocupied
+            else {
+                $startTime = date('h:i', strtotime('+'.$rest.' minutes', strtotime($endTime)));
+            }
         }
+
+
 	    echo "</table>";
-        echo "<p>*Een wedstrijd duurt $match min</p>";
-        echo "<p>*Tussen de wedstrijden zit $pause min pauze</p>";
+        echo "<p>*Een wedstrijd duurt $matchDuration min</p>";
+        echo "<p>*Tussen de wedstrijden zit $rest min pauze</p>";
 	}
 
 
@@ -132,6 +129,7 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 
 
 }
+// When competition is not yet generated
 else {
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 		echo 'Er is op dit moment geen competitie actief, klik op de knop hieronder om een competitie te genereren.';
