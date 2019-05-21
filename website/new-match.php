@@ -8,7 +8,7 @@
 
 session_start();
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 ?>
     <!doctype html>
     <html class="no-js" lang="">
@@ -37,23 +37,27 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         <img src="img/footballer.png" alt="footballer">
         <div class="create-form-background">
             <div class="title-form">
-                <h3>Nieuwe wedstrijd aanmaken: </h3>
+                <h3>Toernooi tijden opgeven: </h3>
             </div>
-            <form id="create-team-form" action="controllers/tijd-schema-controller.php" method="post">
+            <form id="create-team-form" action="controllers/new-match-controller.php" method="post">
 
-                <label for="game-start">Start tijd <small><i>(vanaf 09.00u)</i></small>:</label>
-                <input type="time" name="starttime"  min="09:00" max="21:00" required>
+                <label for="game-start">Aanvang toernooi <small><i>(vanaf 09.00u)</i></small>:</label>
+                <div class="starttime">
+                    <input id="starttime" type="number" name="starttimehours"  min="9" max="20" required>
+                    <input id="starttime1" type="number" name="starttimeminutes"  min="1" max="59" required>
+                </div>
+
                 <br>
 
                 <label for="game-break">Pauze :</label>
-                <input type="time" name="pause"  min="00:00" max="00:30" required>
+                <input type="number" name="pause"  min="0" max="30" required>
                 <br>
 
-                <label for="game-duration">Hoelang duurt het :</label>
-                <input type="time" name="matchtime"  min="00:00" max="03:00" required>
+                <label for="game-duration">Hoelang duurt een wedstrijd :</label>
+                <input type="number" name="matchtime"  min="0" max="60" required>
                 <br>
 
-                <label for="fields">Veld :</label>
+                <label for="fields">Aantal speelvelden :</label>
                 <select name = "field" required>
                     <option value = "">Selecteer een veld</option>
                     <option value = "1">1</option>
