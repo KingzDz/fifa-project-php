@@ -412,6 +412,21 @@ footer{
     flex-direction: column;
 }
 
+#starttime{
+    width: 50%;
+    text-align: right;
+}
+
+#starttime1{
+    width: 50%;
+    text-align: left;
+}
+
+.starttime{
+    display: flex;
+    flex-direction: row;
+}
+
 /*fonts*/
 
 @font-face {
