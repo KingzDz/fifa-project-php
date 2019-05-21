@@ -36,11 +36,11 @@ $prepare = $db->prepare($sql);
 $prepare->execute();
 $scheduleInfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
-$starttime = $scheduleInfo[0]['starttime'];
+$starttime = $scheduleInfo[0]['starttimehour'];
 $match = $scheduleInfo[0]['matchtime'];
 $pause = $scheduleInfo[0]['pause'];
 $zero = 0;
-$minutes = 0;
+$minutes = $scheduleInfo[0]['starttimemin'];
 $fields = $scheduleInfo[0]['fields'];
 $matches = 0;
 $played = 0;
