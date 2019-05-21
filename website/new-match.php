@@ -44,7 +44,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 <label for="game-start">Aanvang toernooi <small><i>(vanaf 09.00u)</i></small>:</label>
                 <div class="starttime">
                     <input id="starttime" type="number" name="starttimehours"  min="9" max="20" required>
-                    <input id="starttime1" type="number" name="starttimeminutes"  min="1" max="59" required>
+                    <input id="starttime1" type="number" name="starttimeminutes"  min="0" max="59" required>
                 </div>
 
                 <br>
