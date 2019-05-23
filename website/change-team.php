@@ -51,6 +51,7 @@ $id = $_GET['id'];
                     </select>
                     <input id="submit-team" type="submit" value="Veranderen">
                 </form>
+                <button onclick="window.location.href = 'detail-team.php?id=<?php echo $id ?>';">Ga terug</button>
             </div>
 
         </div>

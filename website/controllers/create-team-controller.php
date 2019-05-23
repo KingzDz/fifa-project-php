@@ -17,11 +17,16 @@ $teamnamelength= strlen($teamname);
 if(empty($teamname) || empty($players))
 {
     echo "Je bent de teamnaam of spelers vergeten, je wordt nu teruggestuurd";
-    header("refresh:4;url=create-team.php");
+    header("refresh:4;url=../create-team.php");
     exit();
 }
 else if($teamnamelength < 3 || $teamnamelength > 15){
     echo 'Je teamname klopt niet gebruik minimaal 3 karakters en maximaal 15, je wordt nu teruggestuurd';
+    header( "refresh:4;url=../create-team.php" );
+    exit();
+}
+else if($players < 6 || $players > 11){
+    echo 'Het aantal spelers klopt niet, je wordt nu teruggestuurd';
     header( "refresh:4;url=../create-team.php" );
     exit();
 }

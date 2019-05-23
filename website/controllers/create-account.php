@@ -16,10 +16,14 @@ $password = $_POST['password'];
 $hashedpassword = password_hash ( $password , PASSWORD_DEFAULT);
 
 if($email == ""){
-    echo "De email mag niet leeg zijn!";
+    echo "De email mag niet leeg zijn, je wordt nu teruggestuurd";
+    header( "refresh:4;url=../user-login.php" );
+    exit();
 }
 else if(strlen($password) < 7){
-    echo 'Wachtwoord is te kort, gebruik een wachtwoord van minimaal 7 karakters';
+    echo 'Wachtwoord is te kort, gebruik een wachtwoord van minimaal 7 karakters, je wordt nu teruggestuurd';
+    header( "refresh:4;url=../user-login.php" );
+    exit();
 }
 
 else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

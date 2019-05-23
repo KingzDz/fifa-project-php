@@ -15,6 +15,16 @@ $matchtime = $_POST['matchtime'];
 $field = $_POST['field'];
 $id = 1;
 
+    if(empty($starttimemin) || empty($starttimehour) || empty($pause) || empty($matchtime) || empty($field)){
+        echo "Je bent iets vergeten in te vullen,  je wordt nu terug gestuurd.";
+        header("refresh:4;url=../new-match.php");
+        exit();
+    }
+    else if($starttimehour < 9 || $starttimehour > 20 || $starttimemin < 0 || $starttimemin > 60 || $pause < 0 || $pause > 30 || $matchtime < 0 || $matchtime > 60 || $field < 1 || $field > 7){
+        echo "Je hebt verkeerde info ingevoerd,  je wordt nu terug gestuurd.";
+        header("refresh:4;url=../new-match.php");
+        exit();
+    }
     if (isset($_POST['submit'])) {
 
         $sql = "UPDATE `match-schedule` SET starttimehour = :starth, starttimemin = :startm, matchtime = :matchtime, pause = :pause, fields = :fields WHERE id = :id";

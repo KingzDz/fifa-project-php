@@ -10,6 +10,7 @@ require '../config.php';
 
 session_start();
 
+
 $email = $_POST['email'];
 
 $sqlemail = "SELECT * FROM user WHERE email = :email";
@@ -20,7 +21,19 @@ $prepare->execute([
 $result = $prepare->fetch(PDO::FETCH_ASSOC);
 $hashedpassword = $result['password'];
 
-if ($email == $result['email']){
+if(empty($email)){
+    echo 'Je hebt geen email opgegeven, je wordt nu teruggestuurd';
+    header( "refresh:4;url=../forgot-pass.php" );
+    exit();
+}
+
+else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    echo 'Dit is geen geldig email, je wordt nu teruggestuurd';
+    header( "refresh:4;url=../forgot-pass.php" );
+    exit();
+}
+
+else if ($email == $result['email']){
     header("refresh:4;url=../index.php");
 
     echo"Er is een mail verstuurd om je wachtwoord te reseten, je wordt nu teruggestuurd";
@@ -35,15 +48,16 @@ Druk hieronder op de link om je wachtwoord aan te passen
 sybrandbos.nl/website/newpassword.php?hashedpassword='.$hashedpassword.'
 ------------------------
 
-Ken jij deze activiteit niet? dan kan je deze mail negeren
- t
+Ken jij deze activiteit niet? dan kan je deze mail negeren.
 ';
 
     $headers = 'From:noreply@fifa-project.nl';
     mail($to, $subject, $messagemail, $headers);
 }
 else {
-    echo "Er bestaat geen account met deze email";
+    echo "Er bestaat geen account met deze email, je wordt nu teruggestuurd";
+    header( "refresh:4;url=../user-login.php" );
+    exit();
 }
 
 

@@ -34,7 +34,7 @@ session_start();
         <h2>Vul hieronder je email in voor je wachtwoord reset</h2>
         <form id="login-account-form" action="controllers/forgot-pass-controller.php" method="post">
             <label for="name">Email</label>
-            <input type="text" name="email" required="">
+            <input type="email" name="email" required="">
             <input id="submit-team" type="submit" value="Versturen">
         </form>
     </div>

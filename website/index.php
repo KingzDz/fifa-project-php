@@ -42,7 +42,7 @@ session_start();
                     echo '<a href="user-home.php">Account</a>';
                 }
                 else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true){
-                    echo '<a href="admin-page.php">Login</a>';
+                    echo '<a href="admin-page.php">Account</a>';
                 }
                 else{
                     echo '<a href="user-login.php">Login</a>';
