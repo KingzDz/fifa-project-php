@@ -81,6 +81,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 <button onclick="window.location.href = '#';">Poel maken</button>
                 <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
                 <button onclick="window.open('Fifa-projectapp.zip')">Download</button>
+                <button onclick="window.location.href = 'admin-matchresults.php';">Resultaten</button>
 
             </div>
         </div>
