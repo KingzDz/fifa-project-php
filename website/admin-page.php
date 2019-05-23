@@ -83,6 +83,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 <button onclick="window.open('Fifa-projectapp.zip')">Download</button>
                 <button onclick="window.location.href = 'admin-matchresults.php';">Resultaten</button>
 
+
             </div>
         </div>
     </main>
