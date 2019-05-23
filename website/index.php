@@ -57,9 +57,7 @@ session_start();
             <button onclick="window.location.href = 'match-schedule.php';">Schema's</button>
         </div>
 
-
     </div>
-    <div class="bar"></div>
     <div class="intro-home">
         <div class="title-home">
             <h3>Info</h3>
