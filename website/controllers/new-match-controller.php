@@ -39,6 +39,10 @@ $id = 1;
             ':id'       => $id
         ]);
 
+        $sql = "UPDATE `match-schedule` SET `match-active` = 1 WHERE `id` = 1;";
+        $prepare = $db->prepare($sql);
+        $prepare->execute();
+
 
         echo "Schema is succesvol aangemaakt !";
         header("refresh:4;url=../admin-page.php");
