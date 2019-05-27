@@ -164,7 +164,7 @@ textarea {
     text-align: center;
   }
   .title{
-    margin: 100px 0;
+    margin: 200px 0;
   }
 
   .bar{
@@ -425,6 +425,21 @@ footer{
 .starttime{
     display: flex;
     flex-direction: row;
+}
+
+/*competition*/
+
+.score{
+    grid-column: 2 / 3;
+}
+
+#score-table{
+    width: 80%;
+    margin: 40px auto;
+}
+
+#score-table td, #score-table th{
+    text-align: center;
 }
 
 /*fonts*/

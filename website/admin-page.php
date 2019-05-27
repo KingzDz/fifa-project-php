@@ -59,7 +59,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                     echo '<ul>';
                     for ($i = 0; $i < $count; $i++) {
                         $title = htmlentities($teams[$i]['teamname']);
-                        echo "<li><a href='admindetail.php?id={$teams[$i]['id']}'> $title</a></li>";
+                        echo "<li><a href='detail-team.php?id={$teams[$i]['id']}'> $title</a></li>";
 
                     }
                     echo '</ul>';

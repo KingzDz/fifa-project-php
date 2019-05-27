@@ -101,13 +101,26 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
 
         </div>
         <div class="edit-del">
-            <a href="user-home.php">Ga terug</a>
+            <?php if($_SESSION['admin'] == true){
+                ?>
+                <a href="admin-page.php">Ga terug</a>
+                <?php
+            }else{
+                ?>
+                <a href="user-home.php">Ga terug</a>
+            <?php
+            }
+            ?>
             <?php
             if($teamleader == $username){
                 ?>
                 <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
                 <a href="add-players.php?id=<?php echo $team['id'] ?>">Spelers toevoegen</a>
             <?php
+            }
+            else if($_SESSION['admin'] == true){
+                ?><a href="controllers/delete-team.php?id=<?php echo $team['id'] ?>">Verwijderen</a>
+                <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a><?php
             }
             ?>
         </div>
