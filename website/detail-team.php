@@ -67,11 +67,13 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
             <table>
                 <tr>
                     <th>Teamnaam</th>
+                    <th>Punten</th>
                     <th>Aantal spelers</th>
                     <th>Leider</th>
                 </tr>
                 <tr>
                     <td><?php echo $team['teamname'] ?></td>
+                    <td><?php echo $team['points'] ?></td>
                     <td><?php echo $team['players']?></td>
                     <td><?php echo $user['username'] ?></td>
                 </tr>
@@ -87,8 +89,9 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($players as $player)
                     {
                         $playername = htmlentities($player['username']);
+                        $goals = htmlentities($player['goals']);
 
-                        echo "<td>$playername</td>";
+                        echo "<td>$playername | goals: $goals</td>";
 
                     }?>
                 </tr>
