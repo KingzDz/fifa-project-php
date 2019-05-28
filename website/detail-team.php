@@ -12,6 +12,8 @@ session_start();
 $id = $_GET['id'];
 $username = $_SESSION['id'];
 
+$zero =0;
+
 $sql = "SELECT * FROM team WHERE id = :id";
 $prepare = $db->prepare($sql);
 $prepare->execute([
@@ -31,6 +33,12 @@ $user = $prepare->fetch(PDO::FETCH_ASSOC);
 $playernames = "SELECT * FROM user WHERE team = $id";
 $query = $db->query($playernames);
 $players = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$teamname = $team['teamname'];
+
+$match = "SELECT * FROM `goals` WHERE `teamid` = $id";
+$query = $db->query($match);
+$matches = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
     <!doctype html>
@@ -97,6 +105,48 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </table>
             </div>
+            <p>Scoorders</p>
+            <div class="info-table">
+                <table>
+                    <tr>
+                        <th>Wedstrijd</th>
+                        <th>Speler</th>
+                        <th>Goals</th>
+                    </tr>
+
+                        <?php foreach ($matches as $match) {
+                            echo"<tr>";
+
+                            $teamid = $match['matchid'];
+                            $matchinfo = "SELECT * FROM `matches` WHERE `id` = $teamid";
+                            $query = $db->query($matchinfo);
+                            $matchesinfo = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($matchesinfo as $item) {
+                                $team1 = $item['team1'];
+                                $team2 = $item['team2'];
+
+                                echo "<th>$team1 tegen $team2</th>";
+                            }
+
+                            $playerid = $match['playerid'];
+                            $playerinfo = "SELECT `username` FROM `user` WHERE `id` = $playerid";
+                            $query = $db->query($playerinfo);
+                            $playersinfo = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($playersinfo as $item) {
+                                $playername = $item['username'];
+
+                                echo "<th>$playername</th>";
+                            }
+
+                            $goals = $match['goals'];
+                            echo "<th>$goals</th>";
+                            echo "</tr>";
+                        }
+                        ?>
+                </table>
+            </div>
 
 
         </div>
@@ -116,6 +166,7 @@ $players = $query->fetchAll(PDO::FETCH_ASSOC);
                 ?>
                 <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
                 <a href="add-players.php?id=<?php echo $team['id'] ?>">Spelers toevoegen</a>
+                <a href="add-goals.php?id=<?php echo $team['id'] ?>">Scoorders toevoegen</a>
             <?php
             }
             else if($_SESSION['admin'] == true){

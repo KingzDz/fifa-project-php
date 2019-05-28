@@ -6,6 +6,9 @@
  * Time: 15:37
  */
 
+session_start();
+
+
 $dbHost = 'localhost';
 $dbUser = 'root';
 $dbPass = '';
