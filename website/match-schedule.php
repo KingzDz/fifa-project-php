@@ -35,6 +35,11 @@ $prepare = $db->prepare($sql);
 $prepare->execute();
 $scheduleInfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
+$sqlreferee = "SELECT * FROM user WHERE referee = 1";
+$prepare = $db->prepare($sqlreferee);
+$prepare->execute();
+$refereeinfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
 //
 $hour = $scheduleInfo[0]['starttimehour'];
 $matchDuration = $scheduleInfo[0]['matchtime'];
@@ -66,6 +71,7 @@ if ($scheduleInfo[0]['match-active'] == 1) {
                 <th>Wedstrijden</th>
                 <th>Tijd</th>
                 <th>Veld</th>
+                <th>Scheids</th>
             </tr>
 
     <?php
@@ -86,9 +92,10 @@ if ($scheduleInfo[0]['match-active'] == 1) {
                 echo '<tr>';
                     $teamName = $team['teamname'];
                     $rivalTeamName = $rivalTeam['teamname'];
-                    echo "<td>$teamName tegen $rivalTeamName</td>";
-                    echo "<td>$startTime</td>";
+                    echo"<td>$teamName tegen $rivalTeamName</td>";
+                    echo"<td>$startTime</td>";
                     echo"<td>$field</td>";
+                    echo"<td>scheids1</td>";
                 echo '</tr>';
 
                 // Time when the next game gets played
