@@ -97,9 +97,8 @@ $matches = $query->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($players as $player)
                     {
                         $playername = htmlentities($player['username']);
-                        $goals = htmlentities($player['goals']);
 
-                        echo "<td>$playername | goals: $goals</td>";
+                        echo "<td>$playername</td>";
 
                     }?>
                 </tr>

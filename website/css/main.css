@@ -452,6 +452,22 @@ footer{
     font-style: normal;
 }
 
+/*repsonsive*/
+
+@media screen and (max-width: 660px) {
+    .intro-home{
+        grid-template-columns: 100%;
+    }
+
+    .title-home{
+        margin: 0px 25px;
+    }
+
+    .title-home h3, .title-home p{
+        text-align: left;
+    }
+
+}
 
 
 

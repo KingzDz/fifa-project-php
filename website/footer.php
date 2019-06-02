@@ -5,7 +5,6 @@
  * Date: 15-4-2019
  * Time: 11:26
  */
-
 ?>
 <footer>
     <div class="footer-content">
