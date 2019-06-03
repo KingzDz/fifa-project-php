@@ -43,25 +43,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
 
                 <label for="game-start">Aanvang toernooi <small><i>(vanaf 09.00u)</i></small>:</label>
                 <div class="starttime">
-                    <input id="starttime" type="number" name="starttimehours"  min="9" max="20" required>
-                    <input id="starttime1" type="number" name="starttimeminutes"  min="0" max="59" required>
+                    <input id="starttime" type="number" name="starttimehours"  min="9" max="20" required value="9">
+                    <input id="starttime1" type="number" step="10" name="starttimeminutes"  min="00" max="59" required value="00">
                 </div>
 
                 <br>
 
                 <label for="game-break">Pauze :</label>
-                <input type="number" name="pause"  min="0" max="30" required>
+                <input type="number" name="pause"  min="0" max="30" required value="5">
                 <br>
 
                 <label for="game-duration">Hoelang duurt een wedstrijd :</label>
-                <input type="number" name="matchtime"  min="0" max="60" required>
+                <input type="number" name="matchtime"  min="0" max="60" required value="20">
                 <br>
 
                 <label for="fields">Aantal speelvelden :</label>
                 <select name = "field" required>
                     <option value = "">Selecteer een veld</option>
                     <option value = "1">1</option>
-                    <option value = "2">2</option>
+                    <option selected value = "2">2</option>
                     <option value = "3">3</option>
                     <option value = "4">4</option>
                     <option value = "5">5</option>

@@ -4,6 +4,13 @@ session_start();
 
 require 'config.php';
 $id = $_GET['id'];
+
+$sql = "SELECT * FROM team WHERE id = :id";
+$prepare = $db->prepare($sql);
+$prepare->execute([
+    ':id' => $id
+]);
+$team = $prepare->fetch(PDO::FETCH_ASSOC);
 ?>
 
     <!doctype html>
@@ -42,7 +49,7 @@ $id = $_GET['id'];
                 </div>
                 <form id="create-team-form" action="controllers/change-team-controller.php?id=<?php echo $id; ?>" method="post">
                     <label for="name">Teamnaam</label>
-                    <input type="text" name="teamname" required="" minlength="3" maxlength="15">
+                    <input type="text" name="teamname" required="" minlength="3" maxlength="15" value="<?php echo $team['teamname'] ?>">
                     <label for="players">Aantal spelers</label>
                     <select name="players" required="">
                         <option value="6">6 spelers</option>

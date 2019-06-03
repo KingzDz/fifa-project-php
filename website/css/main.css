@@ -164,7 +164,7 @@ textarea {
     text-align: center;
   }
   .title{
-    margin: 100px 0;
+    margin: 200px 0;
   }
 
   .bar{
@@ -427,6 +427,21 @@ footer{
     flex-direction: row;
 }
 
+/*competition*/
+
+.score{
+    grid-column: 2 / 3;
+}
+
+#score-table{
+    width: 80%;
+    margin: 40px auto;
+}
+
+#score-table td, #score-table th{
+    text-align: center;
+}
+
 /*fonts*/
 
 @font-face {
@@ -437,6 +452,22 @@ footer{
     font-style: normal;
 }
 
+/*repsonsive*/
+
+@media screen and (max-width: 660px) {
+    .intro-home{
+        grid-template-columns: 100%;
+    }
+
+    .title-home{
+        margin: 0px 25px;
+    }
+
+    .title-home h3, .title-home p{
+        text-align: left;
+    }
+
+}
 
 
 

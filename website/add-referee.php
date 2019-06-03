@@ -1,23 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sybra
- * Date: 15-4-2019
- * Time: 14:20
- */
 
 session_start();
 
+require 'config.php';
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
-    $username = $_SESSION['id'];
-    require 'config.php';
+    $user = "SELECT * FROM user";
+    $query = $db->query($user);
+    $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    $sql = "SELECT * FROM team";
 
-    $query =$db->query($sql);
-    $teams = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
+
     <!doctype html>
     <html class="no-js" lang="">
 
@@ -40,51 +35,37 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
     <body>
     <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-        href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+            href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
 
     <?php require 'header.php' ?>
     <main>
-        <div class="main-user">
-            <div class="teams">
-                <h2>Teams</h2>
-                <?php
-                if(empty($teams)){
-                    ?><h2>Er zijn nog geen teams aangemaakt</h2><?php
-                }
-                else{
-                    $count = count($teams);
-                    echo '<ul>';
-                    for ($i = 0; $i < $count; $i++) {
-                        $title = htmlentities($teams[$i]['teamname']);
-                        echo "<li><a href='detail-team.php?id={$teams[$i]['id']}'> $title</a></li>";
-
-                    }
-                    echo '</ul>';
-
-
-                    if ($count == 0) {
-                        echo  "<h2>Er zijn geen teams hier.</h2>";
-                    } else if ($count == 1) {
-                        echo  "<h2>Er is $count team.</h2>";
-                    } else {
-                        echo  "<h2>Er zijn $count teams.</h2>";
-                    }
-                    
-                }
-                ?>
+        <div class="main-form">
+            <img src="img/footballer.png" alt="footballer">
+            <div class="create-form-background">
+                <div class="title-form">
+                    <h3>Voeg scheidsrechters toe</h3>
+                </div>
+                <form id="create-team-form" action="controllers/add-referee-controller.php" method="post">
+                    <label for="players">scheidsrechters</label>
+                    <select name="player" required="">
+                        <?php foreach ($usernames as $username) {
+                            if ($username['referee'] == null) {
+                                $title = htmlentities($username['username']);
+                                ?>
+                                <option value="<?php echo $username['id'] ?>"><?php echo $title ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <input id="submit-team" type="submit" value="Toevoegen">
+                </form>
+                <button onclick="window.location.href = 'admin-page.php';">Ga terug</button>
             </div>
-            <div class="create-team-button">
-                <button onclick="window.location.href= 'new-match.php';">Nieuw toernooi</button>
-                <button onclick="window.location.href= 'add-referee.php';">Scheids</button>
-                <button onclick="window.location.href = 'controllers/log-out.php';">Uitloggen</button>
-                <button onclick="window.open('Fifa-projectapp.zip')">Download</button>
-                <button onclick="window.location.href = 'admin-matchresults.php';">Resultaten</button>
 
-
-            </div>
         </div>
     </main>
     <?php require 'footer.php' ?>
@@ -117,6 +98,3 @@ else{
     header("Location: user-login.php");
     exit();
 }
-?>
-
-

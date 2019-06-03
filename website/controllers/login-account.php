@@ -35,15 +35,13 @@ else {
         $_SESSION['id'] = $user['id'];
 
         if($user['admin'] == 1){
-
-            $_SESSION['loggedin'] = true;
-            $_SESSION['id'] = $user['id'];
             $_SESSION['admin'] = true;
-
             header("Location: ../admin-page.php");
         }
         else{
+            $_SESSION['admin'] = false;
             header("Location: ../user-home.php");
+
         }
 
 

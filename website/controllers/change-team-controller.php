@@ -44,6 +44,12 @@ if (isset($_GET['id']))
         ':id' => $id
     ]);
 
+    $sqlgoals = "DELETE FROM goals WHERE teamid = :id";
+    $prepare = $db->prepare($sqlgoals);
+    $prepare->execute([
+        ':id' => $id
+    ]);
+
 
     echo "Team is succesvol aangepast, je word nu teruggestuurd";
     header( "refresh:4;url=../user-home.php" );

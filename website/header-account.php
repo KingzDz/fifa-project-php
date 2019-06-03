@@ -5,6 +5,7 @@
  * Date: 15-4-2019
  * Time: 11:25
  */
+session_start();
 ?>
 <header>
     <div class="nav">

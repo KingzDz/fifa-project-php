@@ -32,8 +32,12 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $query = $db->query($sqlemail);
     $result = $query->fetch();
 
-    if ($email == $result['email']) {
-        echo "Er bestaat al een account met dit email, je word teruggestuurd";
+    $sqlusername = "SELECT * FROM user WHERE username = '$username'";
+    $query = $db->query($sqlusername);
+    $resultuser = $query->fetch();
+
+    if ($email == $result['email'] || $username == $resultuser['username']) {
+        echo "Er bestaat al een account met dit email/gebruiksernaam, je word teruggestuurd";
         header( "refresh:4;url=../user-login.php" );
         exit();
 

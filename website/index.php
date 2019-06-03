@@ -1,5 +1,23 @@
 <?php
 session_start();
+require 'config.php';
+
+$place = 1;
+$player = 0;
+$players = 3;
+
+$myArray = array();
+
+$sql = "SELECT * FROM team ORDER BY points DESC, teamname ASC";
+
+$query =$db->query($sql);
+$teams = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$sqlgoals = "SELECT * FROM goals ORDER BY goals DESC";
+
+$query =$db->query($sqlgoals);
+$goals = $query->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -58,6 +76,8 @@ session_start();
         </div>
 
     </div>
+
+
     <div class="intro-home">
         <div class="title-home">
             <h3>Info</h3>
@@ -75,6 +95,33 @@ session_start();
                 possimus quas qui quisquam rem similique tempore velit?</p>
         </div>
     </div>
+
+    <div class="score">
+        <h2 style="color: black; text-align: center">Stand</h2>
+        <table align="center" id="score-table">
+            <tr>
+                <th>Plaats</th>
+                <th>Teamnaam</th>
+                <th>Punten</th>
+            </tr>
+            <?php
+            foreach ($teams as $team){
+                $teamname = htmlentities($team['teamname']);
+                $points = htmlentities($team['points']);
+                ?>
+                <tr>
+                    <td><?php echo "#$place"?></td>
+                    <td><?php echo $team['teamname'] ?></td>
+                    <td><?php echo $team['points'] ?></td>
+                </tr>
+
+                <?php
+                $place++;
+            }
+            ?>
+        </table>
+    </div>
+
     <?php require 'footer.php'?>
 </main>
 

@@ -8,9 +8,12 @@ $query = $db->query($sql);
 $results = $query->fetchAll(PDO::FETCH_ASSOC);
 $key = $_GET['key'];
 
+$matches = array();
+$matches['result'] = $results;
+
 if (isset($results) && $key == 'J93hdb4Ua83AkVWo0cbxIsn2ibw3nlxX3') {
     http_response_code(200);
-    echo json_encode($results);
+    echo json_encode($matches);
 
 }
 else{
