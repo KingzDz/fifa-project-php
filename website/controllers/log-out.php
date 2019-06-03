@@ -16,5 +16,5 @@ else{
     $_SESSION['loggedin'] = false;
 }
 
-header("Location: ../index.php");
+header("Location: ../index.php?logout=success");
 exit();

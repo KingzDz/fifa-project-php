@@ -35,7 +35,7 @@ $prepare = $db->prepare($sql);
 $prepare->execute();
 $scheduleInfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
-$sqlreferee = "SELECT * FROM user WHERE referee = 1";
+$sqlreferee = "SELECT * FROM matches WHERE referee = 1";
 $prepare = $db->prepare($sqlreferee);
 $prepare->execute();
 $refereeinfo = $prepare->fetchAll(PDO::FETCH_ASSOC);
