@@ -10,7 +10,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
     $query = $db->query($user);
     $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
+    $sql = "SELECT * FROM matches";
+    $query = $db->query($sql);
+    $matches = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <!doctype html>
@@ -49,8 +51,20 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                     <h3>Voeg scheidsrechters toe</h3>
                 </div>
                 <form id="create-team-form" action="controllers/add-referee-controller.php" method="post">
-                    <label for="players">scheidsrechters</label>
-                    <select name="player" required="">
+                    <label for="match">Ronde :</label>
+                    <select name="match" required="">
+                        <?php foreach ($matches as $match) {
+                            if($match['referee'] == 0){
+                                $matchname = $match['team1'] . " - " . $match['team2'];
+                                ?>
+                                <option value="<?php echo $matchname ?>"><?php echo $matchname ?></option>
+                                <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    <label for="referee">Scheidsrechter :</label>
+                    <select name="referee" required="">
                         <?php foreach ($usernames as $username) {
                             if ($username['referee'] == null) {
                                 $title = htmlentities($username['username']);
