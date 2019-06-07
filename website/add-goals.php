@@ -9,12 +9,16 @@ $team = "SELECT * FROM `team` WHERE id = $id";
 $query = $db->query($team);
 $teaminfo = $query->fetchAll(PDO::FETCH_ASSOC);
 
+
+//slaat teamname op in een variable
 $teamname = $teaminfo[0]['teamname'];
 
+//haalt alle wedstrijden op uit de database
 $match = "SELECT * FROM `matches` WHERE `team1` = '$teamname' OR `team2` = '$teamname'";
 $query = $db->query($match);
 $matches = $query->fetchAll(PDO::FETCH_ASSOC);
 
+//haalt alle spelers die in dit team zitten op
 $user = "SELECT * FROM user WHERE `team` = $id";
 $query = $db->query($user);
 $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -58,6 +62,7 @@ $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <form id="create-team-form" action="controllers/add-goals-controller.php?id=<?php echo $id; ?>" method="post">
                 <label for="players">Speler die gescoord heeft</label>
+<!--                loopt door alle spelers heen-->
                 <select name="player" required="">
                     <?php foreach ($usernames as $username)
                     {
@@ -69,6 +74,7 @@ $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                 </select>
                 <label for="players">Wedstrijd</label>
+<!--                Loopt door alle wedstrijden heen-->
                 <select name="match" required="">
                     <?php foreach ($matches as $match)
                     {       $team1 = $match['team1'];

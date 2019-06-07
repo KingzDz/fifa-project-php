@@ -4,8 +4,10 @@ session_start();
 
 require 'config.php';
 
+//kijkt of de ingelogde gebruiker admin is
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
+//    haalt alle spelers op uit de database
     $user = "SELECT * FROM user";
     $query = $db->query($user);
     $usernames = $query->fetchAll(PDO::FETCH_ASSOC);

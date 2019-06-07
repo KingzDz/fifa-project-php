@@ -23,6 +23,8 @@ $result = $prepare->fetch(PDO::FETCH_ASSOC);
 
 $email = $result['email'];
 
+//past je wachtwoord aan
+
 if($mainpassword == $secupassword && $mainpassword != "" && $hash == $result['password']){
 
     $hashedpassword = password_hash ( $mainpassword , PASSWORD_DEFAULT);

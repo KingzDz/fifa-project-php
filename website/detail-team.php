@@ -114,8 +114,9 @@ $matches = $query->fetchAll(PDO::FETCH_ASSOC);
                     </tr>
 
                         <?php foreach ($matches as $match) {
+//                            table voor de goals per speler per wedstrijd
                             echo"<tr>";
-
+//                            haalt de wedstrijden op uit de database
                             $teamid = $match['matchid'];
                             $matchinfo = "SELECT * FROM `matches` WHERE `id` = $teamid";
                             $query = $db->query($matchinfo);
@@ -127,7 +128,7 @@ $matches = $query->fetchAll(PDO::FETCH_ASSOC);
 
                                 echo "<th>$team1 tegen $team2</th>";
                             }
-
+//                            haalt de spelers uit het team op
                             $playerid = $match['playerid'];
                             $playerinfo = "SELECT `username` FROM `user` WHERE `id` = $playerid";
                             $query = $db->query($playerinfo);
@@ -161,6 +162,7 @@ $matches = $query->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
             <?php
+//            kijkt of je leider van het team ben, zo ja heb je meer rechten
             if($teamleader == $username){
                 ?>
                 <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a>
@@ -168,6 +170,7 @@ $matches = $query->fetchAll(PDO::FETCH_ASSOC);
                 <a href="add-goals.php?id=<?php echo $team['id'] ?>">Scoorders toevoegen</a>
             <?php
             }
+            //            kijkt of je admin bent, zo ja heb je meer rechten
             else if($_SESSION['admin'] == true){
                 ?><a href="controllers/delete-team.php?id=<?php echo $team['id'] ?>">Verwijderen</a>
                 <a href="change-team.php?id=<?php echo $team['id'] ?>">Veranderen</a><?php

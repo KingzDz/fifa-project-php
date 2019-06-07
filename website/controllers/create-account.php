@@ -15,17 +15,20 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $hashedpassword = password_hash ( $password , PASSWORD_DEFAULT);
 
+//kijkt of de email niet leeg is
 if($email == ""){
     echo "De email mag niet leeg zijn, je wordt nu teruggestuurd";
     header( "refresh:4;url=../user-login.php" );
     exit();
 }
+//kijkt of het wachtwoord groter is dan 7 karakters
 else if(strlen($password) < 7){
     echo 'Wachtwoord is te kort, gebruik een wachtwoord van minimaal 7 karakters, je wordt nu teruggestuurd';
     header( "refresh:4;url=../user-login.php" );
     exit();
 }
 
+//kijkt of het een geldig email is
 else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     $sqlemail = "SELECT * FROM user WHERE email = '$email'";
@@ -36,6 +39,7 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $query = $db->query($sqlusername);
     $resultuser = $query->fetch();
 
+//    kijkt of er al een account bestaat met deze info
     if ($email == $result['email'] || $username == $resultuser['username']) {
         echo "Er bestaat al een account met dit email/gebruiksernaam, je word teruggestuurd";
         header( "refresh:4;url=../user-login.php" );
@@ -49,12 +53,6 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             ':password' => $hashedpassword,
             ':username' => $username,
         ]);
-
-        $sqlemail = "SELECT * FROM user WHERE email = '$email'";
-        $query = $db->query($sqlemail);
-        $result = $query->fetch();
-
-        $id = $result['id'];
 
         echo "Account succesvol aangemaakt, je word nu teruggestuurd";
         header( "refresh:4;url=../user-login.php" );

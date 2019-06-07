@@ -140,7 +140,7 @@ if ($scheduleInfo[0]['match-active'] == 1) {
 else {
 	if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 		echo 'Er is op dit moment geen competitie actief, klik op de knop hieronder om een competitie te genereren.';
-		echo '<button onclick="window.location.href = \'generate-competition.php\';">Maak aan</button>';
+		echo '<button onclick="window.location.href = \'new-match.php\';">Maak aan</button>';
 	} else {
 		echo 'Er is op dit moment geen competitie actief, voor meer info contact de organisator.';
 	}
