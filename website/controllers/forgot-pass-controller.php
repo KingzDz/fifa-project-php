@@ -21,18 +21,22 @@ $prepare->execute([
 $result = $prepare->fetch(PDO::FETCH_ASSOC);
 $hashedpassword = $result['password'];
 
+//kijkt of er een mail is opgegeven
 if(empty($email)){
     echo 'Je hebt geen email opgegeven, je wordt nu teruggestuurd';
     header( "refresh:4;url=../forgot-pass.php" );
     exit();
 }
 
+//kijkt of het een geldig email is
 else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
     echo 'Dit is geen geldig email, je wordt nu teruggestuurd';
     header( "refresh:4;url=../forgot-pass.php" );
     exit();
 }
 
+//kijkt of er een account bestaat met deze email
+//zo ja verstuurd hij een email
 else if ($email == $result['email']){
     header("refresh:4;url=../index.php");
 

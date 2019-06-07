@@ -8,6 +8,8 @@
 
 session_start();
 
+//logt je uit op alle sessies
+
 if($_SESSION['admin'] == true) {
     $_SESSION['admin'] = false;
     $_SESSION['loggedin'] = false;

@@ -4,8 +4,10 @@ session_start();
 
 require 'config.php';
 
+//kijkt of de ingelogde gebruiker admin is
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
+//    haalt alle spelers op uit de database
     $user = "SELECT * FROM user";
     $query = $db->query($user);
     $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -50,6 +52,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 </div>
                 <form id="create-team-form" action="controllers/add-referee-controller.php" method="post">
                     <label for="players">scheidsrechters</label>
+<!--                    loopt door alle spelers heen-->
                     <select name="player" required="">
                         <?php foreach ($usernames as $username) {
                             if ($username['referee'] == null) {

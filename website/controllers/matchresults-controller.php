@@ -14,6 +14,7 @@ $secondscore = $_POST['teamtwo'];
 $matches = $_POST['matches'];
 $teams = explode('-', $matches);
 
+//kijkt of de juiste waardes zijn ingevuld
 if ($firstscore != null && $secondscore != null && $_SESSION['admin'] == true){
     $sql = "INSERT INTO matchresults (firstteam, firstscore, secondteam, secondscore) VALUES (:firstteam, :firstscore, :secondteam, :secondscore)";
     $prepare = $db->prepare($sql);
@@ -25,13 +26,14 @@ if ($firstscore != null && $secondscore != null && $_SESSION['admin'] == true){
     ]);
     header("Location: ../admin-page.php");
 
+//    haalt de punten van team 1 op
     $pointsteamone = "SELECT * FROM team WHERE teamname = :id";
     $prepare = $db->prepare($pointsteamone);
     $prepare->execute([
         ':id' => trim($teams[0])
     ]);
     $team1 = $prepare->fetch(PDO::FETCH_ASSOC);
-
+//    haalt de punten van team 2 op
     $pointsteamtwo = "SELECT * FROM team WHERE teamname = :id";
     $prepare = $db->prepare($pointsteamtwo);
     $prepare->execute([
@@ -39,6 +41,7 @@ if ($firstscore != null && $secondscore != null && $_SESSION['admin'] == true){
     ]);
     $team2 = $prepare->fetch(PDO::FETCH_ASSOC);
 
+//    kijkt welk team heeft gewonnen en kent punten toe
     if($firstscore > $secondscore){
         $score = 3 + $team1['points'];
 
@@ -49,6 +52,7 @@ if ($firstscore != null && $secondscore != null && $_SESSION['admin'] == true){
             ':teamname' => trim($teams[0])
         ]);
     }
+    //    kijkt welk team heeft gewonnen en kent punten toe
     else if($firstscore == $secondscore){
         $score1 = 1 + $team1['points'];
         $score2 = 1 + $team2['points'];
@@ -67,6 +71,7 @@ if ($firstscore != null && $secondscore != null && $_SESSION['admin'] == true){
             ':teamname' => trim($teams[1])
         ]);
     }
+    //    kijkt welk team heeft gewonnen en kent punten toe
     else if($secondscore > $firstscore){
         $score = 3 + $team2['points'];
 

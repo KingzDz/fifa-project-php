@@ -8,6 +8,7 @@
 
 session_start();
 
+//kijkt of de ingelogde gebruiker admin is
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
     $username = $_SESSION['id'];
@@ -19,7 +20,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
 
     $competition = array();
     $competition['matches'] = array();
-
+//zet alle wedstrijden in een array
     foreach ($teams as $team){
         $teams = array_slice($teams, 1 , count($teams));
         foreach ($teams as $opponoment) {

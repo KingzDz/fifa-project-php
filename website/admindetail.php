@@ -18,9 +18,10 @@ $prepare->execute([
     ':id' => $id
 ]);
 $team = $prepare->fetch(PDO::FETCH_ASSOC);
-
+//haalt de leider op uit de database en stopt deze in een var
 $teamleader = $team['leader'];
 
+//gebruikt het id van de leider om gebruikersnaam op de halen
 $sql2 = "SELECT * FROM user WHERE id = :id";
 $prepare = $db->prepare($sql2);
 $prepare->execute([

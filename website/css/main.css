@@ -101,7 +101,10 @@ textarea {
  /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-  body, main, header{
+
+/*standard settings*/
+
+body, main, header{
     display: grid;
     grid-column: 1 / 4;
     grid-template-columns: 20% 60% 20%;
@@ -333,7 +336,7 @@ table, th, td {
     width: 100%;
 }
 
-/*index*/
+/*homepage*/
 
 .intro-home{
     display: grid;

@@ -9,6 +9,8 @@
 require '../config.php';
 session_start();
 
+//haalt data op uit de forms
+
 $player = $_POST['player'];
 $match = $_POST['match'];
 $team = $_GET['id'];
