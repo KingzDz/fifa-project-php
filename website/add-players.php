@@ -5,6 +5,7 @@ session_start();
 require 'config.php';
 $id = $_GET['id'];
 
+//haalt info over het team op
 $sql = "SELECT * FROM team WHERE id = :id";
 $prepare = $db->prepare($sql);
 $prepare->execute([
@@ -12,6 +13,7 @@ $prepare->execute([
 ]);
 $team = $prepare->fetch(PDO::FETCH_ASSOC);
 
+//haalt info over de spelers op
 $user = "SELECT * FROM user";
 $query = $db->query($user);
 $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -56,6 +58,7 @@ $usernames = $query->fetchAll(PDO::FETCH_ASSOC);
             <form id="create-team-form" action="controllers/add-players-controller.php?team=<?php echo $id; ?>" method="post">
                 <label for="name">Team: <?php echo $team['teamname'] ?></label>
                 <label for="players">Spelers toevoegen</label>
+<!--                Loopt door alle spelers heen-->
                 <select name="player" required="">
                     <?php foreach ($usernames as $username)
                     {

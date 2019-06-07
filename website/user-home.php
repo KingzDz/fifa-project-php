@@ -8,18 +8,18 @@
 
 session_start();
 
+//      kijkt of je bent ingelogd
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
     $username = $_SESSION['id'];
     require 'config.php';
 
     $sql = "SELECT * FROM team";
-
     $query =$db->query($sql);
     $teams = $query->fetchAll(PDO::FETCH_ASSOC);
 
+//    selecteert de leider van een team
     $sqluser = "SELECT * FROM team WHERE leader = '$username'";
-
     $query = $db->query($sqluser);
     $teamuser = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -68,16 +68,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                 {
                     foreach ($teams as $team)
                     {
+//                        loopt door de teams heen
                         $title = htmlentities($team['teamname']);
                         if($team['leader'] != $username){
                             echo "<li><a href='detail-team.php?id={$team['id']}'> $title</a></li>";
                         }
-                        else{
-
-                        }
-
                     }
 
+//                    kijkt van hoeveel teams jij leider bent
                     $countuser = count($teamuser);
 
                     if($countuser == 1)
@@ -98,9 +96,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                         else{
 
                         }
-
                     }
-
                 }
                 ?>
             </div>

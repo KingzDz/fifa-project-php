@@ -8,6 +8,7 @@
 
 session_start();
 
+//kijkt of de ingelogde gebruiker admin is
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['admin'] == true) {
 
     $username = $_SESSION['id'];
@@ -55,6 +56,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                     ?><h2>Er zijn nog geen teams aangemaakt</h2><?php
                 }
                 else{
+//                    loopt door alle teams heen
                     $count = count($teams);
                     echo '<ul>';
                     for ($i = 0; $i < $count; $i++) {

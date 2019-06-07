@@ -2,6 +2,7 @@
 
 session_start();
 
+//kijkt of je wel echt ingelogd bent
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 ?>
 

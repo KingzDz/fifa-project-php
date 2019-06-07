@@ -8,15 +8,11 @@ $players = 3;
 
 $myArray = array();
 
-$sql = "SELECT * FROM team ORDER BY points DESC, teamname ASC";
+//selecteert de teams op punten voor de stand
 
+$sql = "SELECT * FROM team ORDER BY points DESC, teamname ASC";
 $query =$db->query($sql);
 $teams = $query->fetchAll(PDO::FETCH_ASSOC);
-
-$sqlgoals = "SELECT * FROM goals ORDER BY goals DESC";
-
-$query =$db->query($sqlgoals);
-$goals = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -105,6 +101,7 @@ $goals = $query->fetchAll(PDO::FETCH_ASSOC);
                 <th>Punten</th>
             </tr>
             <?php
+//            laat de stand zien in een table
             foreach ($teams as $team){
                 $teamname = htmlentities($team['teamname']);
                 $points = htmlentities($team['points']);
