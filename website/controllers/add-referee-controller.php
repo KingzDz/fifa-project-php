@@ -14,7 +14,8 @@ if(!empty($team1) && !empty($team2) && !empty($referee)){
         ':team1'    => $team1,
         ':team2'    => $team2
     ]);
-    header("refresh:6;url=../admin-page.php");
+    echo 'Je hebt succesvol een scheidsrechter toegevoegd!';
+    header("refresh:4;url=../admin-page.php");
 }
 else{
     echo 'Voer eerst het formulier in! Je word nu teruggestuurd';
