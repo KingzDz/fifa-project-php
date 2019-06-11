@@ -6,18 +6,24 @@ require '../config.php';
 $teamid = $_GET['team'];
 $playerid = $_POST['player'];
 
-$places = "SELECT * FROM team WHERE id = '$teamid'";
-$query = $db->query($places);
-$place = $query->fetch();
+$places = "SELECT * FROM team WHERE id = :teamid";
+$prepare = $db->prepare($places);
+$prepare->execute([
+    ':teamid' => $teamid
+]);
+$place = $prepare->fetch();
 
-$players = "SELECT * FROM user WHERE team = $teamid";
-$query = $db->query($players);
-$player = $query->fetchAll(PDO::FETCH_ASSOC);
+$players = "SELECT * FROM user WHERE team = :teamid";
+$prepare = $db->prepare($players);
+$prepare->execute([
+    ':teamid' => $teamid
+]);
+$player = $prepare->fetch();
 
-$plekken = $place['players'];
+$empty = $place['players'];
 $members = count($player);
 
-if($members >= $plekken){
+if($members >= $empty){
     echo "Je probeert te veel spelers aan je team toe te voegen, je wordt teruggestuurd";
     header( "refresh:6;url=../add-players.php?id=$teamid" );
 }

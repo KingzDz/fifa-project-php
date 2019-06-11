@@ -31,16 +31,16 @@ else if(strlen($password) < 7){
 //kijkt of het een geldig email is
 else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-    $sqlemail = "SELECT * FROM user WHERE email = '$email'";
-    $query = $db->query($sqlemail);
-    $result = $query->fetch();
-
-    $sqlusername = "SELECT * FROM user WHERE username = '$username'";
-    $query = $db->query($sqlusername);
-    $resultuser = $query->fetch();
+    $sqlemail = "SELECT * FROM user WHERE email = :email AND username = :username";
+    $prepare = $db->prepare($sqlemail);
+    $prepare->execute([
+        ':email'        => $email,
+        ':username'     => $username
+    ]);
+    $result = $prepare->fetch(PDO::FETCH_ASSOC);
 
 //    kijkt of er al een account bestaat met deze info
-    if ($email == $result['email'] || $username == $resultuser['username']) {
+    if ($email == $result['email'] || $username == $result['username']) {
         echo "Er bestaat al een account met dit email/gebruiksernaam, je word teruggestuurd";
         header( "refresh:4;url=../user-login.php" );
         exit();
@@ -49,7 +49,7 @@ else if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $sql = "INSERT  INTO user (email, password, username) VALUES (:email, :password, :username)";
         $prepare = $db->prepare($sql);
         $prepare->execute([
-            ':email' => $email,
+            ':email'    => $email,
             ':password' => $hashedpassword,
             ':username' => $username,
         ]);

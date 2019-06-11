@@ -34,9 +34,12 @@ else if($players < 6 || $players > 11){
     exit();
 }
 
-$sqlteam = "SELECT * FROM team WHERE teamname = '$teamname'";
-$query =$db->query($sqlteam);
-$result = $query->fetch();
+$sqlteam = "SELECT * FROM team WHERE teamname = :teamname";
+$prepare = $db->prepare($sqlteam);
+$prepare->execute([
+    ':teamname' => $teamname
+]);
+$result = $prepare->fetch(PDO::FETCH_ASSOC);
 
 //kijkt of er al een team met deze naam bestaat
 if ($teamname == $result['teamname']){
