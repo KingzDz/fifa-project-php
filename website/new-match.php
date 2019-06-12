@@ -72,17 +72,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $_SESSION['
                 </select>
                 <br>
 
-                <label for="pouleSelect">Kies een poule :</label>
-                <select name = "pouleSelect" required>
-                    <option value = "A">A</option>
-                    <option value = "B">B</option>
-                    <option value = "C">C</option>
-                    <option value = "D">D</option>
-                    <option value = "E">E</option>
-                    <option value = "F">F</option>
-                </select>
-                <br>
-
                 <input id="submit-team" type="submit" name="submit" value="Opslaan">
 
             </form>

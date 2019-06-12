@@ -133,8 +133,6 @@ if ($scheduleInfo[0]['match-active'] == 1) {
         </table>
     <?php
 
-
-
 }
 // When competition is not yet generated
 else {

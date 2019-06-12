@@ -15,9 +15,6 @@ $matchtime = $_POST['matchtime'];
 $fields = $_POST['field'];
 $id = 1;
 
-$pouleSelect = $_POST['pouleSelect'];
-
-
     if($starttimehour < 9 || $starttimehour > 20 || $starttimemin < 0 || $starttimemin > 60 || $pause < 0 || $pause > 30 || $matchtime < 0 || $matchtime > 60 || $fields < 1 || $fields > 7){
         echo "Je hebt verkeerde info ingevoerd,  je wordt nu terug gestuurd.";
         header("refresh:4;url=../new-match.php");
@@ -87,9 +84,7 @@ $pouleSelect = $_POST['pouleSelect'];
                         ':field'    => $field,
                         ':timematch'=> $startTime,
                         ':referee'  => $referee,
-                        ':pouleSelect'  => $pouleSelect
                     ]);
-
 
 
                     // Time when the next game gets played
